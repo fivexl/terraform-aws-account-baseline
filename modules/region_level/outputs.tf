@@ -10,10 +10,10 @@ output "state_bucket_name" {
 
 output "dynamodb_state_lock_arn" {
   description = "The ARN of the DynamoDB table used for state locking"
-  value       = try(aws_dynamodb_table.state_lock.arn, "")
+  value       = try(aws_dynamodb_table.state_lock[0].arn, "")
 }
 
 output "dynamodb_state_lock_name" {
   description = "The ARN of the DynamoDB table used for state locking"
-  value       = try(aws_dynamodb_table.state_lock.id, "")
+  value       = try(aws_dynamodb_table.state_lock[0].id, "")
 }
