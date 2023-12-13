@@ -13,7 +13,7 @@ variable "logging" {
   type = object(
     {
       target_bucket = optional(string, "")
-      target_prefix = optional(string)
+      target_prefix = optional(string, "")
     }
   )
   default     = {}

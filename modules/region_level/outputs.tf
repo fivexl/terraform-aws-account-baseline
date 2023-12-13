@@ -1,11 +1,11 @@
 output "state_bucket_arn" {
   description = "The ARN of the S3 bucket used for storing Terraform state"
-  value       = try(module.terraform_state_bucket.s3_bucket_arn, "")
+  value       = try(module.terraform_state_bucket[0].s3_bucket_arn, "")
 }
 
 output "state_bucket_name" {
   description = "The ARN of the S3 bucket used for storing Terraform state"
-  value       = try(module.terraform_state_bucket.s3_bucket_id, "")
+  value       = try(module.terraform_state_bucket[0].s3_bucket_id, "")
 }
 
 output "dynamodb_state_lock_arn" {
