@@ -5,6 +5,6 @@ locals {
 
   state_logging_configuration = var.create_s3_access_logs_bucket == true ? {
     target_bucket = var.s3_access_logs_bucket_name != "" ? var.s3_access_logs_bucket_name : local.s3_access_logs_bucket_name
-    target_prefix = "${var.s3_tf_state_bucket_name != "" ? var.s3_tf_state_bucket_name : local.s3_tf_state_bucket_name}/"
+    target_prefix = var.s3_tf_state_bucket_name
   } : {}
 }
