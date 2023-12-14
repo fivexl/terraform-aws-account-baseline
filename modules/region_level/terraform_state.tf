@@ -3,7 +3,7 @@ module "terraform_state_bucket" {
   count  = var.create_s3_tf_state_bucket ? 1 : 0
 
   logging     = local.state_logging_configuration
-  bucket_name = var.s3_tf_state_bucket_name != "" ? var.s3_tf_state_bucket_name : local.s3_tf_state_bucket_name
+  bucket_name = local.state_bucket_name
   versioning  = var.s3_tf_state_bucket_versioning
 
   tags = merge(var.s3_tf_state_bucket_tags, var.tags)

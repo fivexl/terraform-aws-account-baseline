@@ -6,7 +6,7 @@ resource "aws_ebs_encryption_by_default" "this" {
 module "access_logs_bucket" {
   source = "github.com/fivexl/aws-account-baseline.git?ref=main/modules/s3_baseline"
 
-  bucket_name = var.s3_access_logs_bucket_name != "" ? var.s3_access_logs_bucket_name : local.s3_access_logs_bucket_name
+  bucket_name = local.access_logs_bucket_name
   create_bucket = var.create_s3_access_logs_bucket
   versioning = var.s3_access_logs_bucket_versioning
   server_side_encryption_configuration = var.s3_access_logs_bucket_server_side_encryption_algorithm
