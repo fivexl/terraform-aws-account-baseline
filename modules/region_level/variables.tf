@@ -152,7 +152,7 @@ variable "s3_tf_state_bucket_name" {
 variable "s3_tf_state_bucket_logging" {
   type        = map(string)
   default     = {}
-  description = "Logging settings for the S3 bucket."
+  description = "Logging settings for the S3 bucket. By default, module will use acess logs bucket."
 }
 
 variable "s3_tf_state_bucket_versioning" {
