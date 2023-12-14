@@ -36,30 +36,6 @@ variable "s3_access_logs_bucket_server_side_encryption_algorithm" {
   description = "The server-side encryption algorithm to use for the S3 bucket."
 }
 
-variable "s3_access_logs_bucket_block_public_acls" {
-  type        = bool
-  default     = true
-  description = "Block public ACLs for the S3 access logs bucket."
-}
-
-variable "s3_access_logs_bucket_block_public_policy" {
-  type        = bool
-  default     = true
-  description = "Block public policy for the S3 access logs bucket."
-}
-
-variable "s3_access_logs_bucket_ignore_public_acls" {
-  type        = bool
-  default     = true
-  description = "Ignore public ACLs for the S3 access logs bucket."
-}
-
-variable "s3_access_logs_bucket_restrict_public_buckets" {
-  type        = bool
-  default     = true
-  description = "Restrict public access to the S3 access logs bucket."
-}
-
 variable "s3_access_logs_bucket_control_object_ownership" {
   type        = bool
   default     = true

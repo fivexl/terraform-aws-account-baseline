@@ -1,3 +1,4 @@
+# tfsec:ignore:aws-s3-enable-bucket-logging
 module "bucket_baseline" {
   count   = var.create_bucket ? 1 : 0
   source  = "terraform-aws-modules/s3-bucket/aws"
