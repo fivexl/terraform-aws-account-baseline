@@ -23,7 +23,7 @@ module "bucket_baseline" {
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_logging#target_object_key_format
 # 2023.12.11
 resource "aws_s3_bucket_logging" "this" {
-  count = var.create_bucket && var.logging != null ? 1 : 0
+  count = var.create_bucket && length(keys(var.logging)) > 0 ? 1 : 0
 
   bucket = module.bucket_baseline[0].s3_bucket_id
 

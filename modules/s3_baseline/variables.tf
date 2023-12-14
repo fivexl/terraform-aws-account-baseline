@@ -10,14 +10,9 @@ variable "bucket_name" {
 }
 
 variable "logging" {
-  type = object(
-    {
-      target_bucket = optional(string, "")
-      target_prefix = optional(string, "")
-    }
-  )
+  type        = map(string)
   default     = {}
-  description = "Logging settings for the S3 bucket."
+  description = "Map containing access bucket logging configuration."
 }
 
 variable "versioning" {
