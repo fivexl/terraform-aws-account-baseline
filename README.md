@@ -1,4 +1,4 @@
-# aws-account-baseline
+# terraform-aws-account-baseline
 The "aws-account-baseline" is an open-source Terraform module designed to provide a standardized foundational setup for AWS accounts. This module ensures that key security and management configurations are consistently applied across all your AWS accounts, establishing a robust and secure baseline.
 
 ## Features
@@ -38,3 +38,6 @@ module "account_baseline_region_level_eu_central_1" {
   }
 }
 ```
+
+## Weekly review link
+[Review](https://github.com/fivexl/terraform-aws-account-baseline/compare/main@%7B7day%7D...main)
