@@ -17,6 +17,11 @@ The "aws-account-baseline" is an open-source Terraform module designed to provid
 This module is intended to be used in every AWS account as a set of "base settings" to ensure a consistent and secure environment. It's easily integrable into your existing AWS setup and can be customized to meet your specific needs.
 
 ```hcl
+provider "aws" {
+  alias  = "eu_central_1"
+  region = "eu-central-1"
+}
+
 module "aws_account_baseline_account_level" {
   source = "github.com/fivexl/aws-account-baseline.git?ref=main/modules/account_level"
   aws_iam_account_alias = "test-management1"
@@ -24,7 +29,6 @@ module "aws_account_baseline_account_level" {
 
 module "aws_account_baseline_region_level" {
   source = "github.com/fivexl/aws-account-baseline.git?ref=main/modules/region_level"
-  tags = module.tags.result
 }
 
 module "account_baseline_region_level_eu_central_1" {
@@ -32,6 +36,5 @@ module "account_baseline_region_level_eu_central_1" {
   providers = {
     aws = aws.eu_central_1
   }
-  tags = module.tags.result
 }
 ```
