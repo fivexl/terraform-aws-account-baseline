@@ -1,6 +1,13 @@
 # Account level baseline module
 
-This module creates a baseline for an AWS account. It creates aws_iam_account_alias, aws_iam_account_password_policy,aws_s3_account_public_access_block
+## Overview
+The terraform-aws-account-baseline module is designed to implement best practices for AWS account management using Terraform. It ensures a secure and standardized configuration for your AWS account.
+
+## Included Resources
+- aws_iam_account_alias: Sets a user-friendly alias for your AWS account login URL.
+- aws_iam_account_password_policy: Establishes a robust password policy for IAM users, enforcing password complexity and rotation policies.
+- aws_s3_account_public_access_block: Applies account-level blocks to prevent public access to S3 buckets, enhancing data security.
+- aws_iam_openid_connect_provider: Configures an OpenID Connect (OIDC) provider for AWS IAM, facilitating identity federation.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements

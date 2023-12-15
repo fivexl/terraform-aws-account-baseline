@@ -1,9 +1,13 @@
 # Aws_account_baseline region level module
 
-This module creates a second, region level baseline for an AWS account. It creates:
-aws_ebs_encryption_by_default resource
-terraform_state resources like aws_s3_bucket and aws_dynamodb_table, with logging to the access logs bucket
-access_logs_bucket 
+## Overview
+The terraform-aws-regional-baseline module is a Terraform solution designed for setting up essential regional resources in AWS with a focus on security and best practices. This configuration helps in maintaining a secure and efficient AWS environment at the regional level.
+
+## Included Resources
+- aws_ebs_encryption_by_default: Automatically enables encryption for new EBS volumes and snapshots created in the region.
+- terraform_state_bucket: Creates an S3 bucket designed to store Terraform state files securely.
+- aws_dynamodb_table: Sets up a DynamoDB table, used for locking Terraform state files to prevent conflicts.
+- access_logs_bucket: Establishes an S3 bucket for storing access logs, assisting in monitoring and auditing activities.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
