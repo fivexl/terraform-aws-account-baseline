@@ -4,7 +4,7 @@ resource "aws_ebs_encryption_by_default" "this" {
 
 #tfsec:ignore:aws-s3-enable-bucket-logging
 module "access_logs_bucket" {
-  source = "github.com/fivexl/aws-account-baseline.git?ref=main/modules/s3_baseline"
+  source = "../s3_baseline"
 
   bucket_name = local.access_logs_bucket_name
   create_bucket = var.create_s3_access_logs_bucket

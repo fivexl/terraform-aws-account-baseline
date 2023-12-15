@@ -1,5 +1,5 @@
 module "terraform_state_bucket" {
-  source = "github.com/fivexl/aws-account-baseline.git?ref=main/modules/s3_baseline"
+  source = "../s3_baseline"
   count  = var.create_s3_tf_state_bucket ? 1 : 0
 
   logging     = local.state_logging_configuration
