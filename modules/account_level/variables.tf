@@ -47,13 +47,13 @@ variable "s3_account_public_access_block_restrict_public_buckets" {
 }
 
 variable "aws_iam_account_alias" {
-    type = string
-    description = "The AWS IAM account alias to set for the account, by default it will be set to the account name"
-    default = ""
+  type        = string
+  description = "The AWS IAM account alias to set for the account, by default it will be set to the account name"
+  default     = ""
 }
 
 variable "create_iam_account_password_policy" {
-    type        = bool
-    description = "Whether to create an IAM account password policy"
-    default     = true
+  type        = bool
+  description = "Whether to create an IAM account password policy"
+  default     = true
 }

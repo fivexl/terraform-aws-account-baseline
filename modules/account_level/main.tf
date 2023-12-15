@@ -1,10 +1,10 @@
-resource "aws_iam_account_alias" "alias" { 
-  count = var.aws_iam_account_alias != "" ? 1 : 0
+resource "aws_iam_account_alias" "alias" {
+  count         = var.aws_iam_account_alias != "" ? 1 : 0
   account_alias = var.aws_iam_account_alias
 }
 
-resource "aws_iam_account_password_policy" "default" { 
-  count = var.create_iam_account_password_policy ? 1 : 0
+resource "aws_iam_account_password_policy" "default" {
+  count                          = var.create_iam_account_password_policy ? 1 : 0
   minimum_password_length        = 64
   password_reuse_prevention      = 24
   max_password_age               = 90
@@ -15,7 +15,7 @@ resource "aws_iam_account_password_policy" "default" {
   allow_users_to_change_password = true
 }
 
-resource "aws_s3_account_public_access_block" "this" {  
+resource "aws_s3_account_public_access_block" "this" {
   count                   = var.create_s3_account_public_access_block ? 1 : 0
   block_public_acls       = var.s3_account_public_access_block_public_acls
   block_public_policy     = var.s3_account_public_access_block_public_policy
@@ -37,7 +37,7 @@ resource "aws_iam_openid_connect_provider" "github" {
   # https://github.blog/changelog/2022-01-13-github-actions-update-on-oidc-based-deployments-to-aws/
   # https://github.blog/changelog/2023-06-27-github-actions-update-on-oidc-integration-with-aws/
   url            = "https://token.actions.githubusercontent.com" # The secure OpenID Connect URL for authentication requests
-  client_id_list = ["sts.amazonaws.com"]                # The client ID issued by the Identity provider for your app
+  client_id_list = ["sts.amazonaws.com"]                         # The client ID issued by the Identity provider for your app
   # Same as pressing the «Get thumbprint» button next to provider URL in the GUI
   thumbprint_list = distinct(concat(
     [data.tls_certificate.github_actions_oidc_provider.certificates[0].sha1_fingerprint],
