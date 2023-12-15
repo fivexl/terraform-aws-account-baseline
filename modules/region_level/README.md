@@ -27,8 +27,8 @@ The terraform-aws-regional-baseline module is a Terraform solution designed for 
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_access_logs_bucket"></a> [access\_logs\_bucket](#module\_access\_logs\_bucket) | github.com/fivexl/aws-account-baseline.git | main/modules/s3_baseline |
-| <a name="module_terraform_state_bucket"></a> [terraform\_state\_bucket](#module\_terraform\_state\_bucket) | github.com/fivexl/aws-account-baseline.git | main/modules/s3_baseline |
+| <a name="module_access_logs_bucket"></a> [access\_logs\_bucket](#module\_access\_logs\_bucket) | ../s3_baseline | n/a |
+| <a name="module_terraform_state_bucket"></a> [terraform\_state\_bucket](#module\_terraform\_state\_bucket) | ../s3_baseline | n/a |
 
 ## Resources
 
