@@ -1,0 +1,16 @@
+version: 2
+
+updates:
+# Terraform - One entry per thing we want to scan as per https://github.com/dependabot/dependabot-core/issues/649
+  - package-ecosystem: "terraform" # DNS
+    directory: "/modules/account_level"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "terraform" # GKE Dev
+    directory: "/modules/region_level"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "terraform" # GKE Prod
+    directory: "/modules/s3_baseline"
+    schedule:
+      interval: "weekly"
