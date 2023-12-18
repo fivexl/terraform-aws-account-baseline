@@ -12,7 +12,7 @@ module "terraform_state_bucket" {
 
 resource "null_resource" "raise_error" {
   # Trigger the error if logging configuration does not exist
-  count =  var.create_s3_tf_state_bucket && length(keys(local.state_logging_configuration)) < 0 ? 1 : 0
+  count =  var.create_s3_tf_state_bucket && length(keys(local.state_logging_configuration)) == 0 ? 1 : 0
 
   provisioner "local-exec" {
     when    = create
