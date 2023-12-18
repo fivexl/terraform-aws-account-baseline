@@ -10,16 +10,6 @@ module "terraform_state_bucket" {
   depends_on = [ null_resource.raise_error ]
 }
 
-resource "null_resource" "raise_error" {
-  # Trigger the error if logging configuration does not exist
-  count =  var.create_s3_tf_state_bucket && length(keys(local.state_logging_configuration)) == 0 ? 1 : 0
-
-  provisioner "local-exec" {
-    when    = create
-    command = "echo 'Error: State logging configuration is required but not provided.' && exit 1"
-  }
-}
-
 #tfsec:ignore:aws-dynamodb-table-customer-key tfsec:ignore:aws-dynamodb-enable-recovery
 resource "aws_dynamodb_table" "state_lock" {
   count        = var.create_dynanodb_tf_state_lock ? 1 : 0
