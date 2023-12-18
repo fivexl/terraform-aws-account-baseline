@@ -7,7 +7,6 @@ module "terraform_state_bucket" {
   versioning  = var.s3_tf_state_bucket_versioning
 
   tags = merge(var.s3_tf_state_bucket_tags, var.tags)
-  depends_on = [ null_resource.raise_error ]
 }
 
 #tfsec:ignore:aws-dynamodb-table-customer-key tfsec:ignore:aws-dynamodb-enable-recovery
