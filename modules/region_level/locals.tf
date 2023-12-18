@@ -11,6 +11,6 @@ locals {
   default_state_logging_configuration = var.create_s3_access_logs_bucket ? {
     target_bucket = local.access_logs_bucket_name
     target_prefix = ""
-  } : null
+  } : {}
   state_logging_configuration = local.state_access_logs_cfg_is_empty ? local.default_state_logging_configuration : var.s3_tf_state_bucket_logging
 }
