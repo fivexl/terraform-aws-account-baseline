@@ -17,3 +17,8 @@ output "dynamodb_state_lock_name" {
   description = "The ARN of the DynamoDB table used for state locking"
   value       = try(aws_dynamodb_table.state_lock[0].id, "")
 }
+
+output "access_logs_bucket_name" {
+  description = "The name of the S3 bucket used for storing access logs"
+  value       = try(module.access_logs_bucket.s3_bucket_id, "")
+}
