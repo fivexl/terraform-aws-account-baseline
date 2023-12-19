@@ -23,23 +23,6 @@ resource "aws_s3_account_public_access_block" "this" {
   restrict_public_buckets = var.s3_account_public_access_block_restrict_public_buckets
 }
 
-# test:
-data "tls_certificate" "github_actions_oidc_provider" {
-  # Read https://github.blog/changelog/2022-01-13-github-actions-update-on-oidc-based-deployments-to-aws/
-  url = "https://token.actions.githubusercontent.com/.well-known/openid-configuration"
-}
-
-resource "aws_iam_openid_connect_provider" "github" {
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_openid_connect_provider
-  # Read https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
-  # Read https://github.com/aws-actions/configure-aws-credentials
-  # Read https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html
-  # https://github.blog/changelog/2022-01-13-github-actions-update-on-oidc-based-deployments-to-aws/
-  # https://github.blog/changelog/2023-06-27-github-actions-update-on-oidc-integration-with-aws/
-  url            = "https://token.actions.githubusercontent.com" # The secure OpenID Connect URL for authentication requests
-  client_id_list = ["sts.amazonaws.com"]                         # The client ID issued by the Identity provider for your app
-  # Same as pressing the «Get thumbprint» button next to provider URL in the GUI
-  thumbprint_list = distinct(concat(
-    [data.tls_certificate.github_actions_oidc_provider.certificates[0].sha1_fingerprint],
-  ))
+module "iam_github_oidc_provider" {
+  source    = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider"
 }
