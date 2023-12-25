@@ -11,7 +11,6 @@ variable "bucket_name" {
 
 variable "logging" {
   type        = map(string)
-  default     = {}
   description = "Map containing access bucket logging configuration."
 }
 

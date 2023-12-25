@@ -23,13 +23,14 @@ module "bucket_baseline" {
 # Logging done via resource, because for now module does not support new Date-based partitioning feature
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_logging#target_object_key_format
 # 2023.12.11
+# Logging are enforced by default, for any bucket created by this module.
 resource "aws_s3_bucket_logging" "this" {
-  count = var.create_bucket && length(keys(var.logging)) > 0 ? 1 : 0
+  count = var.create_bucket ? 1 : 0
 
   bucket = module.bucket_baseline[0].s3_bucket_id
 
   target_bucket = var.logging.target_bucket
-  target_prefix = try(var.logging.target_prefix, null)
+  target_prefix = try(var.logging.target_prefix, "")
 
   target_object_key_format {
     partitioned_prefix {
