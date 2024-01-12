@@ -2,6 +2,10 @@ resource "aws_ebs_encryption_by_default" "this" {
   enabled = true
 }
 
+
+# Tfsec are ignored because we don't want to end up with a circular logging in the access logs bucket, and we will
+# protect bucket by other settings.
+# We don't use our s3_baseline module here, because it enforces logging.
 #tfsec:ignore:aws-s3-enable-bucket-logging
 module "access_logs_bucket" {
   count   = var.create_s3_access_logs_bucket ? 1 : 0
