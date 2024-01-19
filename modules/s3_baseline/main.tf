@@ -2,12 +2,22 @@
 module "bucket_baseline" {
   count   = var.create_bucket ? 1 : 0
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.15.1"
+  version = "4.0.1"
 
   bucket = var.bucket_name
 
   versioning                           = var.versioning
   server_side_encryption_configuration = var.server_side_encryption_configuration
+
+  logging = {
+    target_bucket = var.logging.target_bucket
+    target_prefix = try(var.logging.target_prefix, "")
+    target_object_key_format = {
+      partitioned_prefix = {
+        partition_date_source = "EventTime"
+      }
+    }
+  }
 
   block_public_acls                 = true
   block_public_policy               = true
@@ -18,23 +28,4 @@ module "bucket_baseline" {
   attach_access_log_delivery_policy = var.attach_access_log_delivery_policy
 
   tags = var.tags
-}
-
-# Logging done via resource, because for now module does not support new Date-based partitioning feature
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_logging#target_object_key_format
-# 2023.12.11
-# Logging are enforced by default, for any bucket created by this module.
-resource "aws_s3_bucket_logging" "this" {
-  count = var.create_bucket ? 1 : 0
-
-  bucket = module.bucket_baseline[0].s3_bucket_id
-
-  target_bucket = var.logging.target_bucket
-  target_prefix = try(var.logging.target_prefix, "")
-
-  target_object_key_format {
-    partitioned_prefix {
-      partition_date_source = "EventTime"
-    }
-  }
 }
