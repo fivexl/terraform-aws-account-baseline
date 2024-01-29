@@ -10,7 +10,7 @@ resource "aws_ebs_encryption_by_default" "this" {
 module "access_logs_bucket" {
   count   = var.create_s3_access_logs_bucket ? 1 : 0
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "4.0.1"
+  version = "4.1.0"
 
   bucket                               = local.access_logs_bucket_name
   versioning                           = var.s3_access_logs_bucket_versioning
