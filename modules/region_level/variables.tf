@@ -54,6 +54,11 @@ variable "s3_access_logs_bucket_tags" {
   description = "Tags to be applied to the S3 access logs bucket."
 }
 
+variable "s3_access_logs_bucket_replication_configuration" {
+  type        = any
+  default     = {}
+  description = "Replication configuration for the S3 bucket."
+}
 
 
 # ------------------------------------------------------------------------------------------------------------------

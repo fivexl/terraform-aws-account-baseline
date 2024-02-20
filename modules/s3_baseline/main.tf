@@ -27,5 +27,7 @@ module "bucket_baseline" {
   object_ownership                  = var.object_ownership
   attach_access_log_delivery_policy = var.attach_access_log_delivery_policy
 
+  replication_configuration = var.replication_configuration
+
   tags = var.tags
 }

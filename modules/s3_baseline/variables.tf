@@ -55,3 +55,9 @@ variable "tags" {
   default     = {}
   description = "Tags to be applied to the bucket."
 }
+
+variable "replication_configuration" {
+  type        = any
+  default     = {}
+  description = "Replication configuration for the S3 bucket."
+}

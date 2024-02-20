@@ -23,6 +23,9 @@ module "access_logs_bucket" {
   ignore_public_acls                   = true
   restrict_public_buckets              = true
   tags                                 = merge(var.s3_access_logs_bucket_tags, var.tags)
+
+  replication_configuration = var.s3_access_logs_bucket_replication_configuration
+
 }
 
 
