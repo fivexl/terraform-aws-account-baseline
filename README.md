@@ -28,17 +28,20 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-module "aws_account_baseline_account_level" {
-  source = "github.com/fivexl/aws-account-baseline.git?ref=main/modules/account_level"
+module "account-baseline_region_level" {
+  source  = "fivexl/account-baseline/aws//modules/account_level"
+  version = "0.0.3"
   aws_iam_account_alias = "test-management1"
 }
 
-module "aws_account_baseline_region_level" {
-  source = "github.com/fivexl/aws-account-baseline.git?ref=main/modules/region_level"
+module "account-baseline_region_level" {
+  source  = "fivexl/account-baseline/aws//modules/region_level"
+  version = "0.0.3"
 }
 
-module "account_baseline_region_level_eu_central_1" {
-  source = "github.com/fivexl/aws-account-baseline.git?ref=main/modules/region_level"
+module "account-baseline_region_level_eu_central_1" {
+  source  = "fivexl/account-baseline/aws//modules/region_level"
+  version = "0.0.3"
   providers = {
     aws = aws.eu_central_1
   }
