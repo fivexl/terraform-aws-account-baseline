@@ -13,23 +13,22 @@ module "terraform_state_bucket" {
 
 }
 
-#tfsec:ignore:aws-dynamodb-table-customer-key tfsec:ignore:aws-dynamodb-enable-recovery
-resource "aws_dynamodb_table" "state_lock" {
-  count        = var.create_dynanodb_tf_state_lock ? 1 : 0
-  name         = var.dynamodb_tf_state_lock_name != "" ? var.dynamodb_tf_state_lock_name : local.dynamodb_tf_state_lock_name
+# tfsec:ignore:aws-dynamodb-enable-recovery
+module "dynanodb_tf_state_lock_" {
+  source  = "terraform-aws-modules/dynamodb-table/aws"
+  version = "4.0.0"
+  count   = var.create_dynanodb_tf_state_lock ? 1 : 0
+
+  name = var.dynamodb_tf_state_lock_name != "" ? var.dynamodb_tf_state_lock_name : local.dynamodb_tf_state_lock_name
+
   hash_key     = var.dynamodb_tf_state_lock_hash_key
   billing_mode = var.dynamodb_tf_state_lock_billing_mode
 
-  dynamic "attribute" {
-    for_each = var.dynamodb_tf_state_lock_attribute
-    content {
-      name = attribute.value["name"]
-      type = attribute.value["type"]
-    }
-  }
-  server_side_encryption {
-    enabled = var.dynamodb_tf_state_lock_server_side_encryption_enabled
-  }
+
+  server_side_encryption_enabled     = var.dynamodb_tf_state_lock_server_side_encryption_enabled
+  server_side_encryption_kms_key_arn = var.dynamodb_tf_state_lock_server_side_encryption_kms_key_arn
+
+  attributes = var.dynamodb_tf_state_lock_attribute
 
   tags = merge(var.dynamodb_tf_state_lock_tags, var.tags)
 }
