@@ -6,7 +6,11 @@ module "terraform_state_bucket" {
   bucket_name = local.state_bucket_name
   versioning  = var.s3_tf_state_bucket_versioning
 
-  tags = merge(var.s3_tf_state_bucket_tags, var.tags)
+  tags                              = merge(var.s3_tf_state_bucket_tags, var.tags)
+  attach_deny_incorrect_kms_key_sse = var.s3_tf_state_bucket_attach_deny_incorrect_kms_key_sse
+  allowed_kms_key_arn               = var.s3_tf_state_bucket_allowed_kms_key_arn
+
+
 }
 
 #tfsec:ignore:aws-dynamodb-table-customer-key tfsec:ignore:aws-dynamodb-enable-recovery
