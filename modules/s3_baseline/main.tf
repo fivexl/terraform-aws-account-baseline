@@ -29,5 +29,8 @@ module "bucket_baseline" {
 
   replication_configuration = var.replication_configuration
 
+  attach_deny_incorrect_kms_key_sse = var.attach_deny_incorrect_kms_key_sse
+  allowed_kms_key_arn               = var.allowed_kms_key_arn
+
   tags = var.tags
 }

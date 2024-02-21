@@ -24,7 +24,9 @@ module "access_logs_bucket" {
   restrict_public_buckets              = true
   tags                                 = merge(var.s3_access_logs_bucket_tags, var.tags)
 
-  replication_configuration = var.s3_access_logs_bucket_replication_configuration
+  replication_configuration         = var.s3_access_logs_bucket_replication_configuration
+  attach_deny_incorrect_kms_key_sse = var.s3_access_logs_bucket_attach_deny_incorrect_kms_key_sse
+  allowed_kms_key_arn               = var.s3_access_logs_bucket_allowed_kms_key_arn
 
 }
 

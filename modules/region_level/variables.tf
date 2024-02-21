@@ -60,6 +60,18 @@ variable "s3_access_logs_bucket_replication_configuration" {
   description = "Replication configuration for the S3 bucket."
 }
 
+variable "s3_access_logs_bucket_attach_deny_incorrect_kms_key_sse" {
+  description = "Controls if S3 bucket policy should deny usage of incorrect KMS key SSE."
+  type        = bool
+  default     = false
+}
+
+variable "s3_access_logs_bucket_allowed_kms_key_arn" {
+  description = "The ARN of KMS key which should be allowed in PutObject"
+  type        = string
+  default     = null
+}
+
 
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
@@ -70,12 +82,6 @@ variable "create_dynanodb_tf_state_lock" {
   description = <<EOT
     If true, module will create DynamoDB table for storing Terraform state lock
     EOT
-}
-
-variable "create_s3_tf_state_bucket" {
-  type        = bool
-  default     = true
-  description = "If true, module will create S3 bucket for storing Terraform state"
 }
 
 variable "dynamodb_tf_state_lock_name" {
@@ -114,10 +120,22 @@ variable "dynamodb_tf_state_lock_attribute" {
   description = "The attributes for the DynamoDB table."
 }
 
+variable "dynamodb_tf_state_lock_tags" {
+  type        = map(string)
+  default     = {}
+  description = "Tags for the DynamoDB table."
+}
+
 variable "dynamodb_tf_state_lock_server_side_encryption_enabled" {
   type        = bool
   default     = true
   description = "Enable server-side encryption for the DynamoDB table."
+}
+
+variable "create_s3_tf_state_bucket" {
+  type        = bool
+  default     = true
+  description = "If true, module will create S3 bucket for storing Terraform state"
 }
 
 variable "s3_tf_state_bucket_name" {
@@ -148,11 +166,20 @@ variable "s3_tf_state_bucket_tags" {
   description = "Tags to be applied to the S3 bucket."
 }
 
-variable "dynamodb_tf_state_lock_tags" {
-  type        = map(string)
-  default     = {}
-  description = "Tags for the DynamoDB table."
+variable "s3_tf_state_bucket_attach_deny_incorrect_kms_key_sse" {
+  description = "Controls if S3 bucket policy should deny usage of incorrect KMS key SSE."
+  type        = bool
+  default     = false
 }
+
+variable "s3_tf_state_bucket_allowed_kms_key_arn" {
+  description = "The ARN of KMS key which should be allowed in PutObject"
+  type        = string
+  default     = null
+}
+
+# ------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------------
 
 variable "tags" {
   type        = map(string)
