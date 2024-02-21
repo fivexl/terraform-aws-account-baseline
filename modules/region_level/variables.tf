@@ -132,6 +132,12 @@ variable "dynamodb_tf_state_lock_server_side_encryption_enabled" {
   description = "Enable server-side encryption for the DynamoDB table."
 }
 
+variable "dynamodb_tf_state_lock_server_side_encryption_kms_key_arn" {
+  description = "The ARN of the CMK that should be used for the AWS KMS encryption. This attribute should only be specified if the key is different from the default DynamoDB CMK, alias/aws/dynamodb."
+  type        = string
+  default     = null
+}
+
 variable "create_s3_tf_state_bucket" {
   type        = bool
   default     = true

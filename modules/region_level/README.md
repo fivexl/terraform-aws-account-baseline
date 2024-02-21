@@ -28,13 +28,13 @@ The terraform-aws-regional-baseline module is a Terraform solution designed for 
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_access_logs_bucket"></a> [access\_logs\_bucket](#module\_access\_logs\_bucket) | terraform-aws-modules/s3-bucket/aws | 4.0.1 |
+| <a name="module_dynanodb_tf_state_lock_"></a> [dynanodb\_tf\_state\_lock\_](#module\_dynanodb\_tf\_state\_lock\_) | terraform-aws-modules/dynamodb-table/aws | 4.0.0 |
 | <a name="module_terraform_state_bucket"></a> [terraform\_state\_bucket](#module\_terraform\_state\_bucket) | ../s3_baseline | n/a |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_dynamodb_table.state_lock](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table) | resource |
 | [aws_ebs_encryption_by_default.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_encryption_by_default) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
@@ -51,6 +51,7 @@ The terraform-aws-regional-baseline module is a Terraform solution designed for 
 | <a name="input_dynamodb_tf_state_lock_hash_key"></a> [dynamodb\_tf\_state\_lock\_hash\_key](#input\_dynamodb\_tf\_state\_lock\_hash\_key) | The hash key for the DynamoDB table. | `string` | `"LockID"` | no |
 | <a name="input_dynamodb_tf_state_lock_name"></a> [dynamodb\_tf\_state\_lock\_name](#input\_dynamodb\_tf\_state\_lock\_name) | The name of the DynamoDB table.<br>  If not specified, the module will generate a name automatically like:<br>  "terraform-state-{sha1(format("%s-%s", data.aws\_caller\_identity.current.account\_id, data.aws\_region.current.name))}" | `string` | `""` | no |
 | <a name="input_dynamodb_tf_state_lock_server_side_encryption_enabled"></a> [dynamodb\_tf\_state\_lock\_server\_side\_encryption\_enabled](#input\_dynamodb\_tf\_state\_lock\_server\_side\_encryption\_enabled) | Enable server-side encryption for the DynamoDB table. | `bool` | `true` | no |
+| <a name="input_dynamodb_tf_state_lock_server_side_encryption_kms_key_arn"></a> [dynamodb\_tf\_state\_lock\_server\_side\_encryption\_kms\_key\_arn](#input\_dynamodb\_tf\_state\_lock\_server\_side\_encryption\_kms\_key\_arn) | The ARN of the CMK that should be used for the AWS KMS encryption. This attribute should only be specified if the key is different from the default DynamoDB CMK, alias/aws/dynamodb. | `string` | `null` | no |
 | <a name="input_dynamodb_tf_state_lock_tags"></a> [dynamodb\_tf\_state\_lock\_tags](#input\_dynamodb\_tf\_state\_lock\_tags) | Tags for the DynamoDB table. | `map(string)` | `{}` | no |
 | <a name="input_s3_access_logs_bucket_allowed_kms_key_arn"></a> [s3\_access\_logs\_bucket\_allowed\_kms\_key\_arn](#input\_s3\_access\_logs\_bucket\_allowed\_kms\_key\_arn) | The ARN of KMS key which should be allowed in PutObject | `string` | `null` | no |
 | <a name="input_s3_access_logs_bucket_attach_deny_incorrect_kms_key_sse"></a> [s3\_access\_logs\_bucket\_attach\_deny\_incorrect\_kms\_key\_sse](#input\_s3\_access\_logs\_bucket\_attach\_deny\_incorrect\_kms\_key\_sse) | Controls if S3 bucket policy should deny usage of incorrect KMS key SSE. | `bool` | `false` | no |
