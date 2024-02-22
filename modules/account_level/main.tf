@@ -27,3 +27,8 @@ module "iam_github_oidc_provider" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider"
   version = "5.34.0"
 }
+
+resource "aws_iam_security_token_service_preferences" "this" {
+  count                         = var.enable_v2_sts_token_version ? 1 : 0
+  global_endpoint_token_version = "v2Token"
+}

@@ -57,3 +57,9 @@ variable "create_iam_account_password_policy" {
   description = "Whether to create an IAM account password policy"
   default     = true
 }
+
+variable "enable_v2_sts_token_version" {
+  type        = bool
+  description = "Enable V2 STS token version: https://docs.aws.amazon.com/IAM/latest/APIReference/API_SetSecurityTokenServicePreferences.html"
+  default     = true
+}

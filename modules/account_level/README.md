@@ -27,7 +27,7 @@ The terraform-aws-account-baseline module is designed to implement best practice
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_iam_github_oidc_provider"></a> [iam\_github\_oidc\_provider](#module\_iam\_github\_oidc\_provider) | terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider | 5.33.0 |
+| <a name="module_iam_github_oidc_provider"></a> [iam\_github\_oidc\_provider](#module\_iam\_github\_oidc\_provider) | terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider | 5.34.0 |
 
 ## Resources
 
@@ -35,6 +35,7 @@ The terraform-aws-account-baseline module is designed to implement best practice
 |------|------|
 | [aws_iam_account_alias.alias](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_alias) | resource |
 | [aws_iam_account_password_policy.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy) | resource |
+| [aws_iam_security_token_service_preferences.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_security_token_service_preferences) | resource |
 | [aws_s3_account_public_access_block.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_account_public_access_block) | resource |
 
 ## Inputs
@@ -44,6 +45,7 @@ The terraform-aws-account-baseline module is designed to implement best practice
 | <a name="input_aws_iam_account_alias"></a> [aws\_iam\_account\_alias](#input\_aws\_iam\_account\_alias) | The AWS IAM account alias to set for the account, by default it will be set to the account name | `string` | `""` | no |
 | <a name="input_create_iam_account_password_policy"></a> [create\_iam\_account\_password\_policy](#input\_create\_iam\_account\_password\_policy) | Whether to create an IAM account password policy | `bool` | `true` | no |
 | <a name="input_create_s3_account_public_access_block"></a> [create\_s3\_account\_public\_access\_block](#input\_create\_s3\_account\_public\_access\_block) | If true, module will create S3 public access block for account | `bool` | `true` | no |
+| <a name="input_enable_v2_sts_token_version"></a> [enable\_v2\_sts\_token\_version](#input\_enable\_v2\_sts\_token\_version) | Enable V2 STS token version: https://docs.aws.amazon.com/IAM/latest/APIReference/API_SetSecurityTokenServicePreferences.html | `bool` | `true` | no |
 | <a name="input_s3_account_public_access_block_ignore_public_acls"></a> [s3\_account\_public\_access\_block\_ignore\_public\_acls](#input\_s3\_account\_public\_access\_block\_ignore\_public\_acls) | (Optional) Whether Amazon S3 should ignore public ACLs for buckets in this account. Defaults to false. Enabling this setting does not affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set. When set to true causes Amazon S3 to:<br>      Ignore all public ACLs on buckets in this account and any objects that they contain. | `bool` | `true` | no |
 | <a name="input_s3_account_public_access_block_public_acls"></a> [s3\_account\_public\_access\_block\_public\_acls](#input\_s3\_account\_public\_access\_block\_public\_acls) | (Optional) Whether Amazon S3 should block public ACLs for buckets in this account. Defaults to false. Enabling this setting does not affect existing policies or ACLs. When set to true causes the following behavior:<br>      PUT Bucket acl and PUT Object acl calls will fail if the specified ACL allows public access.<br>      PUT Object calls fail if the request includes a public ACL. | `bool` | `true` | no |
 | <a name="input_s3_account_public_access_block_public_policy"></a> [s3\_account\_public\_access\_block\_public\_policy](#input\_s3\_account\_public\_access\_block\_public\_policy) | (Optional) Whether Amazon S3 should block public bucket policies for buckets in this account. Defaults to false. Enabling this setting does not affect existing bucket policies. When set to true causes Amazon S3 to:<br>    Reject calls to PUT Bucket policy if the specified bucket policy allows public access. | `bool` | `true` | no |
