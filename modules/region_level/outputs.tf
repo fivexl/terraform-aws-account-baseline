@@ -20,5 +20,5 @@ output "dynamodb_state_lock_name" {
 
 output "access_logs_bucket_name" {
   description = "The name of the S3 bucket used for storing access logs"
-  value       = try(module.access_logs_bucket.s3_bucket_id, "")
+  value       = try(module.access_logs_bucket[0].s3_bucket_id, "")
 }
