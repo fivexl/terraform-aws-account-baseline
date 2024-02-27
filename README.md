@@ -30,18 +30,18 @@ provider "aws" {
 
 module "account-baseline_region_level" {
   source  = "fivexl/account-baseline/aws//modules/account_level"
-  version = "0.0.3"
+  version = "1.0.0"
   aws_iam_account_alias = "test-management1"
 }
 
 module "account-baseline_region_level" {
   source  = "fivexl/account-baseline/aws//modules/region_level"
-  version = "0.0.3"
+  version = "1.0.0"
 }
 
 module "account-baseline_region_level_eu_central_1" {
   source  = "fivexl/account-baseline/aws//modules/region_level"
-  version = "0.0.3"
+  version = "1.0.0"
   providers = {
     aws = aws.eu_central_1
   }
