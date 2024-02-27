@@ -28,7 +28,7 @@ The terraform-aws-regional-baseline module is a Terraform solution designed for 
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_access_logs_bucket"></a> [access\_logs\_bucket](#module\_access\_logs\_bucket) | terraform-aws-modules/s3-bucket/aws | 4.0.1 |
-| <a name="module_dynanodb_tf_state_lock_"></a> [dynanodb\_tf\_state\_lock\_](#module\_dynanodb\_tf\_state\_lock\_) | terraform-aws-modules/dynamodb-table/aws | 4.0.0 |
+| <a name="module_dynanodb_tf_state_lock"></a> [dynanodb\_tf\_state\_lock](#module\_dynanodb\_tf\_state\_lock) | terraform-aws-modules/dynamodb-table/aws | 4.0.0 |
 | <a name="module_terraform_state_bucket"></a> [terraform\_state\_bucket](#module\_terraform\_state\_bucket) | ../s3_baseline | n/a |
 
 ## Resources
@@ -74,6 +74,7 @@ The terraform-aws-regional-baseline module is a Terraform solution designed for 
 
 | Name | Description |
 |------|-------------|
+| <a name="output_access_logs_bucket_arn"></a> [access\_logs\_bucket\_arn](#output\_access\_logs\_bucket\_arn) | The ARN of the S3 bucket used for storing Terraform state |
 | <a name="output_access_logs_bucket_name"></a> [access\_logs\_bucket\_name](#output\_access\_logs\_bucket\_name) | The name of the S3 bucket used for storing access logs |
 | <a name="output_dynamodb_state_lock_arn"></a> [dynamodb\_state\_lock\_arn](#output\_dynamodb\_state\_lock\_arn) | The ARN of the DynamoDB table used for state locking |
 | <a name="output_dynamodb_state_lock_name"></a> [dynamodb\_state\_lock\_name](#output\_dynamodb\_state\_lock\_name) | The ARN of the DynamoDB table used for state locking |

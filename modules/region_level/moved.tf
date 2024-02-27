@@ -5,6 +5,6 @@ moved {
 
 #Refactor dynamodb state lock to use dynamodb module
 moved {
-  from = aws_dynamodb_table.state_lock[0]
-  to   = module.dynanodb_tf_state_lock_[0].aws_dynamodb_table.this[0]
+  from = module.dynanodb_tf_state_lock_[0].aws_dynamodb_table.this[0]
+  to   = module.dynanodb_tf_state_lock[0].aws_dynamodb_table.this[0]
 }
