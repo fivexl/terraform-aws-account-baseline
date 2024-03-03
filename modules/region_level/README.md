@@ -28,7 +28,7 @@ The terraform-aws-regional-baseline module is a Terraform solution designed for 
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_access_logs_bucket"></a> [access\_logs\_bucket](#module\_access\_logs\_bucket) | terraform-aws-modules/s3-bucket/aws | 4.0.1 |
-| <a name="module_dynanodb_tf_state_lock"></a> [dynanodb\_tf\_state\_lock](#module\_dynanodb\_tf\_state\_lock) | terraform-aws-modules/dynamodb-table/aws | 4.0.0 |
+| <a name="module_dynamodb_tf_state_lock"></a> [dynamodb\_tf\_state\_lock](#module\_dynamodb\_tf\_state\_lock) | terraform-aws-modules/dynamodb-table/aws | 4.0.0 |
 | <a name="module_terraform_state_bucket"></a> [terraform\_state\_bucket](#module\_terraform\_state\_bucket) | ../s3_baseline | n/a |
 
 ## Resources
@@ -43,7 +43,7 @@ The terraform-aws-regional-baseline module is a Terraform solution designed for 
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_create_dynanodb_tf_state_lock"></a> [create\_dynanodb\_tf\_state\_lock](#input\_create\_dynanodb\_tf\_state\_lock) | If true, module will create DynamoDB table for storing Terraform state lock | `bool` | `true` | no |
+| <a name="input_create_dynamodb_tf_state_lock"></a> [create\_dynamodb\_tf\_state\_lock](#input\_create\_dynamodb\_tf\_state\_lock) | If true, module will create DynamoDB table for storing Terraform state lock | `bool` | `true` | no |
 | <a name="input_create_s3_access_logs_bucket"></a> [create\_s3\_access\_logs\_bucket](#input\_create\_s3\_access\_logs\_bucket) | If true, module will create S3 bucket for storing access logs | `bool` | `true` | no |
 | <a name="input_create_s3_tf_state_bucket"></a> [create\_s3\_tf\_state\_bucket](#input\_create\_s3\_tf\_state\_bucket) | If true, module will create S3 bucket for storing Terraform state | `bool` | `true` | no |
 | <a name="input_dynamodb_tf_state_lock_attribute"></a> [dynamodb\_tf\_state\_lock\_attribute](#input\_dynamodb\_tf\_state\_lock\_attribute) | The attributes for the DynamoDB table. | <pre>list(object({<br>    name = string<br>    type = string<br>  }))</pre> | <pre>[<br>  {<br>    "name": "LockID",<br>    "type": "S"<br>  }<br>]</pre> | no |

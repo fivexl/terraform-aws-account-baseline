@@ -8,3 +8,8 @@ moved {
   from = module.dynanodb_tf_state_lock_[0].aws_dynamodb_table.this[0]
   to   = module.dynanodb_tf_state_lock[0].aws_dynamodb_table.this[0]
 }
+
+moved {
+  from = module.dynanodb_tf_state_lock[0].aws_dynamodb_table.this[0]
+  to   = module.dynamodb_tf_state_lock[0].aws_dynamodb_table.this[0]
+}

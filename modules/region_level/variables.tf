@@ -76,7 +76,7 @@ variable "s3_access_logs_bucket_allowed_kms_key_arn" {
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 # Terraform state resources
-variable "create_dynanodb_tf_state_lock" {
+variable "create_dynamodb_tf_state_lock" {
   type        = bool
   default     = true
   description = <<EOT

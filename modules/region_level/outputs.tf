@@ -10,12 +10,12 @@ output "state_bucket_name" {
 
 output "dynamodb_state_lock_arn" {
   description = "The ARN of the DynamoDB table used for state locking"
-  value       = try(module.dynanodb_tf_state_lock[0].dynamodb_table_arn, "")
+  value       = try(module.dynamodb_tf_state_lock[0].dynamodb_table_arn, "")
 }
 
 output "dynamodb_state_lock_name" {
   description = "The ARN of the DynamoDB table used for state locking"
-  value       = try(module.dynanodb_tf_state_lock[0].dynamodb_table_id, "")
+  value       = try(module.dynamodb_tf_state_lock[0].dynamodb_table_id, "")
 }
 
 output "access_logs_bucket_name" {
