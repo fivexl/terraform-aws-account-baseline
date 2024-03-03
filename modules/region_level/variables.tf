@@ -184,6 +184,18 @@ variable "s3_tf_state_bucket_allowed_kms_key_arn" {
   default     = null
 }
 
+variable "s3_tf_state_bucket_server_side_encryption_configuration" {
+  type = any
+  default = {
+    rule = {
+      apply_server_side_encryption_by_default = {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+  description = "The server-side encryption algorithm to use for the S3 bucket."
+}
+
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 
