@@ -23,11 +23,10 @@ module "access_logs_bucket" {
   ignore_public_acls                   = true
   restrict_public_buckets              = true
   tags                                 = merge(var.s3_access_logs_bucket_tags, var.tags)
+  lifecycle_rule                       = var.s3_access_logs_bucket_lifecycle_rule
 
   replication_configuration         = var.s3_access_logs_bucket_replication_configuration
   attach_deny_incorrect_kms_key_sse = var.s3_access_logs_bucket_attach_deny_incorrect_kms_key_sse
   allowed_kms_key_arn               = var.s3_access_logs_bucket_allowed_kms_key_arn
 
 }
-
-

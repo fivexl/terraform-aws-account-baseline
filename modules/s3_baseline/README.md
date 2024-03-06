@@ -50,6 +50,7 @@ No resources.
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | The name of the bucket. | `string` | n/a | yes |
 | <a name="input_control_object_ownership"></a> [control\_object\_ownership](#input\_control\_object\_ownership) | Control object ownership for the bucket. | `bool` | `true` | no |
 | <a name="input_create_bucket"></a> [create\_bucket](#input\_create\_bucket) | If true, module will create S3 bucket, with predefined best practices. | `bool` | `true` | no |
+| <a name="input_lifecycle_rule"></a> [lifecycle\_rule](#input\_lifecycle\_rule) | List of maps containing configuration of object lifecycle management. | `any` | `[]` | no |
 | <a name="input_logging"></a> [logging](#input\_logging) | Map containing access bucket logging configuration. | `map(string)` | n/a | yes |
 | <a name="input_object_ownership"></a> [object\_ownership](#input\_object\_ownership) | The type of object ownership for the bucket. | `string` | `"BucketOwnerEnforced"` | no |
 | <a name="input_replication_configuration"></a> [replication\_configuration](#input\_replication\_configuration) | Replication configuration for the S3 bucket. | `any` | `{}` | no |

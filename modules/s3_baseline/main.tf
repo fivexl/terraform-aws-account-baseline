@@ -26,16 +26,17 @@ module "bucket_baseline" {
   control_object_ownership          = var.control_object_ownership
   object_ownership                  = var.object_ownership
   attach_access_log_delivery_policy = var.attach_access_log_delivery_policy
+  lifecycle_rule                    = var.lifecycle_rule
 
 
-  attach_deny_insecure_transport_policy = true
+  attach_deny_insecure_transport_policy    = true
   attach_deny_incorrect_encryption_headers = true
-  attach_deny_unencrypted_object_uploads = true
+  attach_deny_unencrypted_object_uploads   = true
 
   attach_deny_incorrect_kms_key_sse = var.attach_deny_incorrect_kms_key_sse
   allowed_kms_key_arn               = var.allowed_kms_key_arn
 
   replication_configuration = var.replication_configuration
-  
+
   tags = var.tags
 }

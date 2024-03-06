@@ -73,3 +73,9 @@ variable "allowed_kms_key_arn" {
   type        = string
   default     = null
 }
+
+variable "lifecycle_rule" {
+  type        = any
+  description = "List of maps containing configuration of object lifecycle management."
+  default     = []
+}

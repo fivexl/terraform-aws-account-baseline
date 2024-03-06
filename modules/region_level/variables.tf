@@ -72,6 +72,12 @@ variable "s3_access_logs_bucket_allowed_kms_key_arn" {
   default     = null
 }
 
+variable "s3_access_logs_bucket_lifecycle_rule" {
+  type        = any
+  description = "List of maps containing configuration of object lifecycle management."
+  default     = []
+}
+
 
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
