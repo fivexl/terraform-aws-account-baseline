@@ -25,7 +25,7 @@ resource "aws_s3_account_public_access_block" "this" {
 
 module "iam_github_oidc_provider" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider"
-  version = "5.34.0"
+  version = "5.37.1"
 }
 
 resource "aws_iam_security_token_service_preferences" "this" {
