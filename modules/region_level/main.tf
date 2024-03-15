@@ -25,8 +25,8 @@ module "access_logs_bucket" {
   tags                                 = merge(var.s3_access_logs_bucket_tags, var.tags)
   lifecycle_rule                       = var.s3_access_logs_bucket_lifecycle_rule
 
+  attach_elb_log_delivery_policy    = var.s3_access_logs_bucket_attach_elb_access_logs_policy
   replication_configuration         = var.s3_access_logs_bucket_replication_configuration
   attach_deny_incorrect_kms_key_sse = var.s3_access_logs_bucket_attach_deny_incorrect_kms_key_sse
   allowed_kms_key_arn               = var.s3_access_logs_bucket_allowed_kms_key_arn
-
 }

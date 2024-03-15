@@ -50,6 +50,12 @@ variable "attach_access_log_delivery_policy" {
   description = "Attach access log delivery policy to the bucket."
 }
 
+variable "attach_elb_access_logs_policy" {
+  type        = bool
+  default     = true
+  description = "Attach ELB access logs delivery policy to the bucket."
+}
+
 variable "tags" {
   type        = map(string)
   default     = {}

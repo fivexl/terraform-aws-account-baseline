@@ -78,6 +78,11 @@ variable "s3_access_logs_bucket_lifecycle_rule" {
   default     = []
 }
 
+variable "s3_access_logs_bucket_attach_elb_access_logs_policy" {
+  type        = bool
+  default     = true
+  description = "Attach ELB access logs delivery policy to the bucket."
+}
 
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
