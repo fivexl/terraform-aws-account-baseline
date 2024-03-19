@@ -29,7 +29,8 @@ module "bucket_baseline" {
 
 
   attach_access_log_delivery_policy        = var.attach_access_log_delivery_policy
-  attach_elb_log_delivery_policy           = var.attach_elb_access_logs_policy
+  attach_elb_log_delivery_policy           = var.attach_access_log_delivery_policy
+  attach_lb_log_delivery_policy            = var.attach_access_log_delivery_policy
   attach_deny_insecure_transport_policy    = true
   attach_deny_incorrect_encryption_headers = true
   attach_deny_unencrypted_object_uploads   = true
