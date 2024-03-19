@@ -17,7 +17,7 @@ module "terraform_state_bucket" {
 # tfsec:ignore:aws-dynamodb-enable-recovery
 module "dynamodb_tf_state_lock" {
   source  = "terraform-aws-modules/dynamodb-table/aws"
-  version = "4.0.0"
+  version = "4.0.1"
   count   = var.create_dynamodb_tf_state_lock ? 1 : 0
 
   name = var.dynamodb_tf_state_lock_name != "" ? var.dynamodb_tf_state_lock_name : local.dynamodb_tf_state_lock_name
