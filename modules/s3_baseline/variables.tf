@@ -47,13 +47,14 @@ variable "object_ownership" {
 variable "attach_access_log_delivery_policy" {
   type        = bool
   default     = false
-  description = "Attach access log delivery policy to the bucket."
+  description = "Attach S3/VPC/NLB/ALB/ELB access log delivery policy to the bucket."
 }
 
+# Deprecated and not used. Will be deleted in future releases
 variable "attach_elb_access_logs_policy" {
   type        = bool
   default     = true
-  description = "Attach ELB access logs delivery policy to the bucket."
+  description = "Deprecated and not used. Will be deleted in future releases"
 }
 
 variable "tags" {
