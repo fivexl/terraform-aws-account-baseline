@@ -45,9 +45,9 @@ No resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_allowed_kms_key_arn"></a> [allowed\_kms\_key\_arn](#input\_allowed\_kms\_key\_arn) | The ARN of KMS key which should be allowed in PutObject | `string` | `null` | no |
-| <a name="input_attach_access_log_delivery_policy"></a> [attach\_access\_log\_delivery\_policy](#input\_attach\_access\_log\_delivery\_policy) | Attach access log delivery policy to the bucket. | `bool` | `false` | no |
+| <a name="input_attach_access_log_delivery_policy"></a> [attach\_access\_log\_delivery\_policy](#input\_attach\_access\_log\_delivery\_policy) | Attach S3/VPC/NLB/ALB/ELB access log delivery policy to the bucket. | `bool` | `false` | no |
 | <a name="input_attach_deny_incorrect_kms_key_sse"></a> [attach\_deny\_incorrect\_kms\_key\_sse](#input\_attach\_deny\_incorrect\_kms\_key\_sse) | Controls if S3 bucket policy should deny usage of incorrect KMS key SSE. | `bool` | `false` | no |
-| <a name="input_attach_elb_access_logs_policy"></a> [attach\_elb\_access\_logs\_policy](#input\_attach\_elb\_access\_logs\_policy) | Attach ELB access logs delivery policy to the bucket. | `bool` | `true` | no |
+| <a name="input_attach_elb_access_logs_policy"></a> [attach\_elb\_access\_logs\_policy](#input\_attach\_elb\_access\_logs\_policy) | Deprecated and not used. Will be deleted in future releases | `bool` | `true` | no |
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | The name of the bucket. | `string` | n/a | yes |
 | <a name="input_control_object_ownership"></a> [control\_object\_ownership](#input\_control\_object\_ownership) | Control object ownership for the bucket. | `bool` | `true` | no |
 | <a name="input_create_bucket"></a> [create\_bucket](#input\_create\_bucket) | If true, module will create S3 bucket, with predefined best practices. | `bool` | `true` | no |
