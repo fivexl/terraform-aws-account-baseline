@@ -1,3 +1,9 @@
+# move to s3 baseline bucket
+moved {
+  from = module.access_logs_bucket[0]
+  to   = module.logs_bucket.module.bucket_baseline[0]
+}
+
 moved {
   from = module.access_logs_bucket.module.bucket_baseline[0]
   to   = module.access_logs_bucket[0]
