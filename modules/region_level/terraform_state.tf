@@ -25,6 +25,8 @@ module "dynamodb_tf_state_lock" {
   hash_key     = var.dynamodb_tf_state_lock_hash_key
   billing_mode = var.dynamodb_tf_state_lock_billing_mode
 
+  point_in_time_recovery_enabled = true
+  deletion_protection_enabled = true
 
   server_side_encryption_enabled     = var.dynamodb_tf_state_lock_server_side_encryption_enabled
   server_side_encryption_kms_key_arn = var.dynamodb_tf_state_lock_server_side_encryption_kms_key_arn
