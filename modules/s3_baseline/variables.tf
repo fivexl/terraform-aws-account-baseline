@@ -79,3 +79,9 @@ variable "lifecycle_rule" {
   description = "List of maps containing configuration of object lifecycle management."
   default     = []
 }
+
+variable "is_logging_bucket" {
+  description = "If this bucket is a logging bucket, we may not need to enable logging, to not end up with access logs delivered to themselves."
+  type        = bool
+  default     = false
+}

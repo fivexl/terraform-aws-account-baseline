@@ -9,7 +9,7 @@ module "bucket_baseline" {
   versioning                           = var.versioning
   server_side_encryption_configuration = var.server_side_encryption_configuration
 
-  logging = {
+  logging = var.is_logging_bucket ? tomap({}) : {
     target_bucket = var.logging.target_bucket
     target_prefix = try(var.logging.target_prefix, "")
     target_object_key_format = {
