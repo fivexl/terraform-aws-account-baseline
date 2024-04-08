@@ -1,12 +1,13 @@
 repos:
 # Terraform
 - repo: https://github.com/antonbabenko/pre-commit-terraform
-  rev: v1.77.2
+  rev: v1.88.4
   hooks:
     - id: terraform_fmt
       args:
         - --args=-diff
         - --args=-write=false
+        - --args=--recursive
       exclude: ^.terraform/
     - id: terraform_tflint
       exclude: ^.terraform/
@@ -14,8 +15,9 @@ repos:
       exclude: ^.terraform/
     - id: terraform_docs
       exclude: ^.terraform/
-    - id: terraform_tfsec
-      exclude: ^.terraform/
+    - id: terraform_trivy
+      args:
+        - --args=--skip-dirs="**/.terraform/*"
 
 - repo: https://github.com/gitleaks/gitleaks
   rev: v8.18.2
