@@ -21,7 +21,7 @@ The terraform-aws-account-baseline module is designed to implement best practice
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.31.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.44.0 |
 
 ## Modules
 
