@@ -16,8 +16,6 @@ repos:
       exclude: ^.terraform/
     - id: terraform_tfsec
       exclude: ^.terraform/
-
-repos:
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.18.2
     hooks:
