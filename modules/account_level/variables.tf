@@ -63,3 +63,9 @@ variable "enable_v2_sts_token_version" {
   description = "Enable V2 STS token version: https://docs.aws.amazon.com/IAM/latest/APIReference/API_SetSecurityTokenServicePreferences.html"
   default     = true
 }
+
+variable "create_iam_github_oidc_provider" {
+  type        = bool
+  description = "Create IAM OIDC provider for GitHub"
+  default     = true
+}
