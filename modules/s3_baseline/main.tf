@@ -28,9 +28,9 @@ module "bucket_baseline" {
   lifecycle_rule           = var.lifecycle_rule
 
 
-  attach_access_log_delivery_policy        = var.attach_log_delivery_policies
-  attach_elb_log_delivery_policy           = var.attach_log_delivery_policies
-  attach_lb_log_delivery_policy            = var.attach_log_delivery_policies
+  attach_access_log_delivery_policy = var.attach_log_delivery_policies
+  attach_elb_log_delivery_policy    = var.attach_log_delivery_policies
+  attach_lb_log_delivery_policy     = var.attach_log_delivery_policies
 
   attach_deny_insecure_transport_policy    = true
   attach_deny_incorrect_encryption_headers = true
