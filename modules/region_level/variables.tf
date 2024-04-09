@@ -84,6 +84,13 @@ variable "s3_access_logs_bucket_attach_log_delivery_policies" {
   description = "Attach S3/VPC/NLB/ALB/ELB access log delivery policy to the bucket."
 }
 
+variable "s3_access_logs_bucket_policy_attachment" {
+  type        = any
+  default     = null
+  description = "The policy to apply to the logs bucket."
+}
+
+
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 # Terraform state resources

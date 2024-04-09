@@ -85,3 +85,9 @@ variable "is_logging_bucket" {
   type        = bool
   default     = false
 }
+
+variable "policy" {
+  type        = any
+  default     = null
+  description = "The policy to apply to the S3 bucket."
+}
