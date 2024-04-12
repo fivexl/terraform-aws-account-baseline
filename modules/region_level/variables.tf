@@ -156,7 +156,7 @@ variable "dynamodb_tf_state_lock_server_side_encryption_kms_key_arn" {
   default     = null
 }
 
-variable "deletion_protection_enabled" {
+variable "dynamodb_tf_state_lock_deletion_protection_enabled" {
   description = "Whether to enable deletion protection on the DynamoDB table"
   type        = bool
   default     = true
