@@ -33,3 +33,16 @@ resource "aws_iam_security_token_service_preferences" "this" {
   count                         = var.enable_v2_sts_token_version ? 1 : 0
   global_endpoint_token_version = "v2Token"
 }
+
+data "aws_caller_identity" "current" {}
+
+module "aws_support_role" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-roles"
+  version = "5.39.0"
+  trusted_role_arns = [
+    "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
+  ]
+  poweruser_role_name        = "AWSSupportRole"
+  poweruser_role_policy_arns = ["arn:aws:iam::aws:policy/AWSSupportAccess"]
+  create_poweruser_role     = true
+}
