@@ -2,7 +2,6 @@ resource "aws_ebs_encryption_by_default" "this" {
   enabled = true
 }
 
-
 module "logs_bucket" {
   source            = "../s3_baseline"
   create_bucket     = var.create_s3_access_logs_bucket
@@ -22,6 +21,10 @@ module "logs_bucket" {
   replication_configuration         = var.s3_access_logs_bucket_replication_configuration
   attach_deny_incorrect_kms_key_sse = var.s3_access_logs_bucket_attach_deny_incorrect_kms_key_sse
   allowed_kms_key_arn               = var.s3_access_logs_bucket_allowed_kms_key_arn
-  tags                              = merge(var.s3_access_logs_bucket_tags, var.tags)
-}
 
+  attach_deny_insecure_transport_policy    = var.s3_access_logs_bucket_attach_deny_insecure_transport_policy
+  attach_deny_incorrect_encryption_headers = var.s3_access_logs_bucket_attach_deny_incorrect_encryption_headers
+  attach_deny_unencrypted_object_uploads   = var.s3_access_logs_bucket_attach_deny_unencrypted_object_uploads
+
+  tags = merge(var.s3_access_logs_bucket_tags, var.tags)
+}

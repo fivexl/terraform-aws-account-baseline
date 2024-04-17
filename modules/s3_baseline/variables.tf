@@ -91,3 +91,21 @@ variable "policy" {
   default     = null
   description = "The policy to apply to the S3 bucket."
 }
+
+variable "attach_deny_insecure_transport_policy" {
+  description = "Controls if S3 bucket policy should deny insecure transport (HTTP) requests."
+  type        = bool
+  default     = true
+}
+
+variable "attach_deny_incorrect_encryption_headers" {
+  description = "Controls if S3 bucket policy should deny requests with incorrect encryption headers."
+  type        = bool
+  default     = true
+}
+
+variable "attach_deny_unencrypted_object_uploads" {
+  description = "Controls if S3 bucket policy should deny unencrypted object uploads."
+  type        = bool
+  default     = true
+}

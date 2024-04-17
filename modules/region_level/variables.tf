@@ -90,6 +90,23 @@ variable "s3_access_logs_bucket_policy_attachment" {
   description = "The policy to apply to the logs bucket."
 }
 
+variable "s3_access_logs_bucket_attach_deny_insecure_transport_policy" {
+  description = "Controls if S3 bucket policy should deny insecure transport (HTTP) requests."
+  type        = bool
+  default     = true
+}
+
+variable "s3_access_logs_bucket_attach_deny_incorrect_encryption_headers" {
+  description = "Controls if S3 bucket policy should deny requests with incorrect encryption headers."
+  type        = bool
+  default     = true
+}
+
+variable "s3_access_logs_bucket_attach_deny_unencrypted_object_uploads" {
+  description = "Controls if S3 bucket policy should deny unencrypted object uploads."
+  type        = bool
+  default     = true
+}
 
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
