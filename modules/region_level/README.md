@@ -8,6 +8,7 @@ The terraform-aws-regional-baseline module is a Terraform solution designed for 
 - terraform_state_bucket: Creates an S3 bucket designed to store Terraform state files securely.
 - aws_dynamodb_table: Sets up a DynamoDB table, used for locking Terraform state files to prevent conflicts.
 - access_logs_bucket: Establishes an S3 bucket for storing access logs, assisting in monitoring and auditing activities.
+- cmk_access_logs_bucket: Some logs, such as NLB access logs, cannot be encrypted using the default AWS-managed KMS key. Since we enforce encryption by default, we need an alternative location for these logs. This bucket serves as a dedicated repository for such access logs, ensuring they are stored securely.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements

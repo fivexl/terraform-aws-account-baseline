@@ -17,6 +17,7 @@ The "terraform-aws-account-baseline" is an open-source Terraform module that off
   - Terraform DynamoDB State Lock Table: Ensures state file locking to prevent conflicts during Terraform operations.
 - Access Logs Bucket: Sets up an S3 bucket for storing access logs, providing critical insights for security and compliance.
 - S3_baseline: Presets S3 buckets with encryption, versioning, and other best practices for secure data storage and management.
+- cmk_access_logs_bucket: Some logs, such as NLB access logs, cannot be encrypted using the default AWS-managed KMS key. Since we enforce encryption by default, we need an alternative location for these logs. This bucket serves as a dedicated repository for such access logs, ensuring they are stored securely.
 
 ## Usage
 This modular setup is designed for integration across all AWS accounts, providing a set of "base settings" for a consistent and secure environment. It can be customized to align with specific organizational needs and easily incorporated into your existing AWS infrastructure.
