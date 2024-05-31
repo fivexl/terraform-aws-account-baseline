@@ -108,6 +108,45 @@ variable "s3_access_logs_bucket_attach_deny_unencrypted_object_uploads" {
   default     = true
 }
 
+
+# ------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------------
+# CMK access logs bucket config
+
+variable "cmk_access_logs_bucket_config" {
+  description = <<EOT
+Configuration for the CMK (Customer Master Key) access logs bucket.
+- bucket_name: The name of the S3 bucket. If not specified, the module will generate a name automatically.
+- logging: If not specified and access logs bucket is created, the module will create a logging configuration that targets the access logs bucket.
+EOT
+  type = object({
+    create_bucket = optional(bool, true)
+    bucket_name   = optional(string, "")
+    versioning    = optional(any, { enabled = true })
+    server_side_encryption_configuration = optional(any, {
+      rule = {
+        apply_server_side_encryption_by_default = {
+          sse_algorithm = "AES256"
+        }
+      }
+    })
+    logging                                  = optional(any, {})
+    lifecycle_rule                           = optional(any, [])
+    replication_configuration                = optional(any, {})
+    object_ownership                         = optional(string, "BucketOwnerEnforced")
+    control_object_ownership                 = optional(bool, true)
+    allowed_kms_key_arn                      = optional(string, null)
+    policy                                   = optional(any, null)
+    attach_log_delivery_policies             = optional(bool, true)
+    attach_deny_incorrect_kms_key_sse        = optional(bool, false)
+    attach_deny_insecure_transport_policy    = optional(bool, true)
+    attach_deny_unencrypted_object_uploads   = optional(bool, true)
+    attach_deny_incorrect_encryption_headers = optional(bool, true)
+    tags                                     = optional(map(string), {})
+  })
+  default = {}
+}
+
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 # Terraform state resources

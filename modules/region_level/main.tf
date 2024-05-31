@@ -28,3 +28,29 @@ module "logs_bucket" {
 
   tags = merge(var.s3_access_logs_bucket_tags, var.tags)
 }
+
+module "cmk_access_logs_bucket" {
+  source        = "../s3_baseline"
+  create_bucket = var.cmk_access_logs_bucket_config.create_bucket
+  logging       = local.cmk_access_logs_logging_configuration
+
+  bucket_name                          = var.cmk_access_logs_bucket_config.bucket_name
+  versioning                           = var.cmk_access_logs_bucket_config.versioning
+  server_side_encryption_configuration = var.cmk_access_logs_bucket_config.server_side_encryption_configuration
+  object_ownership                     = var.cmk_access_logs_bucket_config.object_ownership
+  control_object_ownership             = var.cmk_access_logs_bucket_config.control_object_ownership
+  lifecycle_rule                       = var.cmk_access_logs_bucket_config.lifecycle_rule
+
+  attach_log_delivery_policies = var.cmk_access_logs_bucket_config.attach_log_delivery_policies
+  policy                       = var.cmk_access_logs_bucket_config.policy
+
+  replication_configuration         = var.cmk_access_logs_bucket_config.replication_configuration
+  attach_deny_incorrect_kms_key_sse = var.cmk_access_logs_bucket_config.attach_deny_incorrect_kms_key_sse
+  allowed_kms_key_arn               = var.cmk_access_logs_bucket_config.allowed_kms_key_arn
+
+  attach_deny_insecure_transport_policy    = var.cmk_access_logs_bucket_config.attach_deny_insecure_transport_policy
+  attach_deny_incorrect_encryption_headers = var.cmk_access_logs_bucket_config.attach_deny_incorrect_encryption_headers
+  attach_deny_unencrypted_object_uploads   = var.cmk_access_logs_bucket_config.attach_deny_unencrypted_object_uploads
+
+  tags = merge(var.cmk_access_logs_bucket_config.tags, var.tags)
+}
