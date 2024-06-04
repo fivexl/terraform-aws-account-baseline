@@ -118,18 +118,13 @@ variable "cmk_access_logs_bucket_config" {
 Configuration for the CMK (Customer Master Key) access logs bucket.
 - bucket_name: The name of the S3 bucket. If not specified, the module will generate a name automatically.
 - logging: If not specified and access logs bucket is created, the module will create a logging configuration that targets the access logs bucket.
+- server_side_encryption_configuration: It is not set to default, so you will be able to create the bucket and specify the encryption algorithm and the KMS key later.
 EOT
   type = object({
     create_bucket = optional(bool, true)
     bucket_name   = optional(string, "")
     versioning    = optional(any, { enabled = true })
-    server_side_encryption_configuration = optional(any, {
-      rule = {
-        apply_server_side_encryption_by_default = {
-          sse_algorithm = "AES256"
-        }
-      }
-    })
+    server_side_encryption_configuration = optional(any, {})
     logging                                  = optional(any, {})
     lifecycle_rule                           = optional(any, [])
     replication_configuration                = optional(any, {})
