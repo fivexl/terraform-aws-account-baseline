@@ -28,6 +28,8 @@ module "bucket_baseline" {
   lifecycle_rule           = var.lifecycle_rule
   policy                   = var.policy
 
+  object_lock_configuration = var.object_lock_configuration
+  object_lock_enabled       = var.object_lock_enabled
 
   attach_access_log_delivery_policy = var.attach_log_delivery_policies
   attach_elb_log_delivery_policy    = var.attach_log_delivery_policies

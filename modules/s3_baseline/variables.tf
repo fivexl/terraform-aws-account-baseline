@@ -109,3 +109,15 @@ variable "attach_deny_unencrypted_object_uploads" {
   type        = bool
   default     = true
 }
+
+variable "object_lock_configuration" {
+  description = "Map containing S3 object locking configuration."
+  type        = any
+  default     = {}
+}
+
+variable "object_lock_enabled" {
+  description = "Whether S3 bucket should have an Object Lock configuration enabled."
+  type        = bool
+  default     = false
+}
