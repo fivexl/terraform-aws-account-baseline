@@ -121,10 +121,10 @@ Configuration for the CMK (Customer Master Key) access logs bucket.
 - server_side_encryption_configuration: It is not set to default, so you will be able to create the bucket and specify the encryption algorithm and the KMS key later.
 EOT
   type = object({
-    create_bucket = optional(bool, false)
-    bucket_name   = optional(string, "")
-    versioning    = optional(any, { enabled = true })
-    server_side_encryption_configuration = optional(any, {})
+    create_bucket                            = optional(bool, false)
+    bucket_name                              = optional(string, "")
+    versioning                               = optional(any, { enabled = true })
+    server_side_encryption_configuration     = optional(any, {})
     logging                                  = optional(any, {})
     lifecycle_rule                           = optional(any, [])
     replication_configuration                = optional(any, {})
