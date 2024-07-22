@@ -28,7 +28,7 @@ module "bucket_baseline" {
   lifecycle_rule           = var.lifecycle_rule
 
   attach_policy = var.attach_policy
-  policy                   = var.policy
+  policy        = var.policy
 
   object_lock_configuration = var.object_lock_configuration
   object_lock_enabled       = var.object_lock_enabled
