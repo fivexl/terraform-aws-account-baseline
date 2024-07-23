@@ -16,7 +16,7 @@ module "logs_bucket" {
   lifecycle_rule                       = var.s3_access_logs_bucket_lifecycle_rule
 
   attach_log_delivery_policies = var.s3_access_logs_bucket_attach_log_delivery_policies
-  attach_policy                = var.s3_access_logs_bucket_attach_policy
+  attach_policy                = var.s3_access_logs_bucket_policy_attachment != null ? true : false
   policy                       = var.s3_access_logs_bucket_policy_attachment
 
   replication_configuration         = var.s3_access_logs_bucket_replication_configuration
@@ -43,7 +43,7 @@ module "cmk_access_logs_bucket" {
   lifecycle_rule                       = var.cmk_access_logs_bucket_config.lifecycle_rule
 
   attach_log_delivery_policies = var.cmk_access_logs_bucket_config.attach_log_delivery_policies
-  attach_policy                = var.cmk_access_logs_bucket_config.attach_policy
+  attach_policy                = var.cmk_access_logs_bucket_config.policy != null ? true : false
   policy                       = var.cmk_access_logs_bucket_config.policy
 
   replication_configuration         = var.cmk_access_logs_bucket_config.replication_configuration

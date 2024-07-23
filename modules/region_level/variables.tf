@@ -108,12 +108,6 @@ variable "s3_access_logs_bucket_attach_deny_unencrypted_object_uploads" {
   default     = true
 }
 
-variable "s3_access_logs_bucket_attach_policy" {
-  description = "Whether to attach a policy to the bucket. Without this variable set to true, the bucket will not have a policy attached."
-  type        = bool
-  default     = false
-}
-
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 # CMK access logs bucket config
@@ -137,7 +131,6 @@ EOT
     object_ownership                         = optional(string, "BucketOwnerEnforced")
     control_object_ownership                 = optional(bool, true)
     allowed_kms_key_arn                      = optional(string, null)
-    attach_policy                            = optional(bool, false)
     policy                                   = optional(any, null)
     attach_log_delivery_policies             = optional(bool, true)
     attach_deny_incorrect_kms_key_sse        = optional(bool, false)
