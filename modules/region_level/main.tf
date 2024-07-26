@@ -43,7 +43,7 @@ module "cmk_access_logs_bucket" {
   lifecycle_rule                       = var.cmk_access_logs_bucket_config.lifecycle_rule
 
   attach_log_delivery_policies = var.cmk_access_logs_bucket_config.attach_log_delivery_policies
-  attach_policy                = var.cmk_access_logs_bucket_config.policy != null ? true : false
+
   policy                       = var.cmk_access_logs_bucket_config.policy
 
   replication_configuration         = var.cmk_access_logs_bucket_config.replication_configuration
