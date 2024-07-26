@@ -16,7 +16,7 @@ module "logs_bucket" {
   lifecycle_rule                       = var.s3_access_logs_bucket_lifecycle_rule
 
   attach_log_delivery_policies = var.s3_access_logs_bucket_attach_log_delivery_policies
-  attach_policy                = var.s3_access_logs_bucket_policy_attachment != null ? true : false
+
   policy                       = var.s3_access_logs_bucket_policy_attachment
 
   replication_configuration         = var.s3_access_logs_bucket_replication_configuration
