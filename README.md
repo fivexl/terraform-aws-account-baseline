@@ -29,7 +29,7 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-module "account-baseline_region_level" {
+module "account-baseline_account_level" {
   source  = "fivexl/account-baseline/aws//modules/account_level"
   version = "1.0.0"
   aws_iam_account_alias = "test-management1"
