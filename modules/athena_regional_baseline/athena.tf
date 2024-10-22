@@ -12,8 +12,6 @@ module "athena_query_results_bucket" {
   tags = var.tags
 }
 
-
-
 resource "aws_athena_workgroup" "primary" {
   count = var.create_athena_workgroup ? 1 : 0
   name  = "primary"
