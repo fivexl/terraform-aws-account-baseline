@@ -1,7 +1,7 @@
 [![FivexL](https://releases.fivexl.io/fivexlbannergit.jpg)](https://fivexl.io/)
 
 # terraform-aws-account-baseline
-The "terraform-aws-account-baseline" is an open-source Terraform module that offers a comprehensive and standardized setup for AWS accounts. This module is structured into three submodules: one for account-level configurations and another for regional settings, followed by the athena_account_baseline. By applying this module, you establish a secure and robust baseline across your AWS accounts, ensuring key security and management configurations are uniformly applied.
+The "terraform-aws-account-baseline" is an open-source Terraform module that offers a comprehensive and standardized setup for AWS accounts. This module is structured into three submodules: one for account-level configurations and another for regional settings, followed by the athena_regional_baseline for Athena-specific account settings. By applying this module, you establish a secure and robust baseline across your AWS accounts, ensuring key security and management configurations are uniformly applied.
 
 ## Features
 **Account Level**
