@@ -3,7 +3,7 @@ module "athena_query_results_bucket" {
   version = "1.2.2"
 
   versioning  = { enabled = false }
-  bucket_name = local.athena_query_results_bucket_name # This should be naming convention module
+  bucket_name = module.naming_convetions.athena_query_results_bucket_name
   logging = {
     target_bucket = var.s3_access_logs_bucket_name
   }
