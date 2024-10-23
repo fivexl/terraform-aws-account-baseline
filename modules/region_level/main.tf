@@ -17,7 +17,7 @@ module "logs_bucket" {
 
   attach_log_delivery_policies = var.s3_access_logs_bucket_attach_log_delivery_policies
 
-  policy                       = var.s3_access_logs_bucket_policy_attachment
+  policy = var.s3_access_logs_bucket_policy_attachment
 
   replication_configuration         = var.s3_access_logs_bucket_replication_configuration
   attach_deny_incorrect_kms_key_sse = var.s3_access_logs_bucket_attach_deny_incorrect_kms_key_sse
@@ -44,7 +44,7 @@ module "cmk_access_logs_bucket" {
 
   attach_log_delivery_policies = var.cmk_access_logs_bucket_config.attach_log_delivery_policies
 
-  policy                       = var.cmk_access_logs_bucket_config.policy
+  policy = var.cmk_access_logs_bucket_config.policy
 
   replication_configuration         = var.cmk_access_logs_bucket_config.replication_configuration
   attach_deny_incorrect_kms_key_sse = var.cmk_access_logs_bucket_config.attach_deny_incorrect_kms_key_sse
