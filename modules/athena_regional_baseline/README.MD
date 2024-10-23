@@ -1,4 +1,4 @@
-# Terraform AWS Athena account baseline module
+# Terraform AWS Athena regional baseline module
 
 This module sets up a baseline configuration for AWS Athena in your account. It follows best practices for security and reliability.
 
