@@ -1,7 +1,3 @@
-resource "aws_ebs_encryption_by_default" "this" {
-  enabled = true
-}
-
 module "logs_bucket" {
   source            = "../s3_baseline"
   create_bucket     = var.create_s3_access_logs_bucket
