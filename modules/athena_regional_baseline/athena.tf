@@ -1,9 +1,8 @@
 module "athena_query_results_bucket" {
-  source  = "fivexl/account-baseline/aws//modules/s3_baseline"
-  version = "1.2.2"
+  source = "../s3_baseline"
 
   versioning  = { enabled = false }
-  bucket_name = module.naming_convetions.athena_query_results_bucket_name
+  bucket_name = local.athena_query_results_bucket_name
   logging = {
     target_bucket = var.s3_access_logs_bucket_name
   }

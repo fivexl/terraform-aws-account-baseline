@@ -12,6 +12,12 @@ variable "s3_access_logs_bucket_name" {
   type        = string
 }
 
+variable "athena_query_results_bucket_name" {
+  description = "The name of the S3 bucket for storing athena query results. Will be generated if not provided"
+  type        = string
+  default     = ""
+}
+
 variable "query_results_bucket_lifecycle_rule" {
   description = "The lifecycle rule for the query results bucket"
   type        = any
