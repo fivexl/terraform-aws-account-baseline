@@ -11,7 +11,8 @@ The "terraform-aws-account-baseline" is an open-source Terraform module that off
 - AWS IAM OpenID Connect Provider: Configures OpenID Connect provider for AWS IAM, facilitating identity federation.
   
 **Regional Level**
-- AWS EBS Encryption by Default: Activates default encryption on EBS volumes, ensuring data at rest is always encrypted.
+- EBS Encryption by Default: Activates default encryption on EBS volumes, ensuring data at rest is always encrypted.
+- Block public EBS snapshot sharing: Prevents data exfiltration by publicly sharing EBS snapshots.
 - Terraform State Resources:
   - Terraform State Bucket: Provides a secure location for storing Terraform state files.
   - Terraform DynamoDB State Lock Table: Ensures state file locking to prevent conflicts during Terraform operations.
