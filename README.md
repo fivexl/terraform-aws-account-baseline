@@ -52,7 +52,7 @@ module "account-baseline_region_level_secondary_region" {
   source  = "fivexl/account-baseline/aws//modules/region_level"
   version = "1.3.7"
   providers = {
-    aws = aws.eu_central_1
+    aws = aws.secondary
   }
 }
 
@@ -109,9 +109,6 @@ locals {
     }
   ]
 }
-```
-
-module
 ```
 
 ## Weekly review link

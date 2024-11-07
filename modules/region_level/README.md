@@ -5,6 +5,7 @@ The terraform-aws-regional-baseline module is a Terraform solution designed for 
 
 ## Included Resources
 - aws_ebs_encryption_by_default: Automatically enables encryption for new EBS volumes and snapshots created in the region.
+- aws_ebs_snapshot_block_public_access: Disables the ability to create public snapshots in the region.
 - terraform_state_bucket: Creates an S3 bucket designed to store Terraform state files securely.
 - aws_dynamodb_table: Sets up a DynamoDB table, used for locking Terraform state files to prevent conflicts.
 - access_logs_bucket: Establishes an S3 bucket for storing access logs, assisting in monitoring and auditing activities.
