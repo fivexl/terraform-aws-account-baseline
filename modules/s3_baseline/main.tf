@@ -2,7 +2,7 @@
 module "bucket_baseline" {
   count   = var.create_bucket ? 1 : 0
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "4.2.1"
+  version = "4.5.0"
 
   bucket = var.bucket_name
 
