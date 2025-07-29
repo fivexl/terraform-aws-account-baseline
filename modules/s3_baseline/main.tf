@@ -27,8 +27,8 @@ module "bucket_baseline" {
   object_ownership         = var.object_ownership
   lifecycle_rule           = var.lifecycle_rule
 
-  attach_policy = var.policy != null ? true : false
-  policy        = var.policy
+  attach_policy = true
+  policy        = data.aws_iam_policy_document.bucket_policy.json
 
   object_lock_configuration = var.object_lock_configuration
   object_lock_enabled       = var.object_lock_enabled
@@ -37,9 +37,12 @@ module "bucket_baseline" {
   attach_elb_log_delivery_policy    = var.attach_log_delivery_policies
   attach_lb_log_delivery_policy     = var.attach_log_delivery_policies
 
-  attach_deny_insecure_transport_policy    = var.attach_deny_insecure_transport_policy
-  attach_deny_incorrect_encryption_headers = var.attach_deny_incorrect_encryption_headers
-  attach_deny_unencrypted_object_uploads   = var.attach_deny_unencrypted_object_uploads
+  attach_deny_insecure_transport_policy = var.attach_deny_insecure_transport_policy
+
+  # Disable the module’s stock “deny if missing/incorrect SSE header” rules
+  # because we’re enforcing stricter versions with a Flow-Logs exception.
+  attach_deny_incorrect_encryption_headers = false
+  attach_deny_unencrypted_object_uploads   = false
 
   attach_deny_incorrect_kms_key_sse = var.attach_deny_incorrect_kms_key_sse
   allowed_kms_key_arn               = var.allowed_kms_key_arn
@@ -47,4 +50,55 @@ module "bucket_baseline" {
   replication_configuration = var.replication_configuration
 
   tags = var.tags
+}
+
+# VPC Flow Logs are unable to use the default policy to put logs into S3, so we need to create a custom one.
+data "aws_iam_policy_document" "bucket_policy" {
+  source_policy_documents = var.policy != null ? var.policy : "{}"
+  statement {
+    sid    = "DenyUnencryptedObjectUploadsExceptFlowLogs"
+    effect = "Deny"
+
+    principals {
+      type        = "*"
+      identifiers = ["*"]
+    }
+
+    actions   = ["s3:PutObject"]
+    resources = ["arn:aws:s3:::${var.bucket_name}/*"]
+
+    condition {
+      test     = "Null"
+      variable = "s3:x-amz-server-side-encryption"
+      values   = ["true"]
+    }
+    condition {
+      test     = "StringNotEquals"
+      variable = "aws:PrincipalService"
+      values   = ["delivery.logs.amazonaws.com"]
+    }
+  }
+  statement {
+    sid    = "DenyIncorrectEncryptionHeadersExceptFlowLogs"
+    effect = "Deny"
+
+    principals {
+      type        = "*"
+      identifiers = ["*"]
+    }
+
+    actions   = ["s3:PutObject"]
+    resources = ["arn:aws:s3:::${var.bucket_name}/*"]
+
+    condition {
+      test     = "StringNotEquals"
+      variable = "s3:x-amz-server-side-encryption"
+      values   = ["AES256"]
+    }
+    condition {
+      test     = "StringNotEquals"
+      variable = "aws:PrincipalService"
+      values   = ["delivery.logs.amazonaws.com"]
+    }
+  }
 }
