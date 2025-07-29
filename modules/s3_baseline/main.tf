@@ -54,7 +54,7 @@ module "bucket_baseline" {
 
 # VPC Flow Logs are unable to use the default policy to put logs into S3, so we need to create a custom one.
 data "aws_iam_policy_document" "bucket_policy" {
-  source_policy_documents = var.policy != null ? var.policy : "{}"
+  source_policy_documents = var.policy != null ? [var.policy] : []
   statement {
     sid    = "DenyUnencryptedObjectUploadsExceptFlowLogs"
     effect = "Deny"
