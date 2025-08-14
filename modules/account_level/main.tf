@@ -25,7 +25,7 @@ resource "aws_s3_account_public_access_block" "this" {
 
 module "iam_github_oidc_provider" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider"
-  version = "5.47.1"
+  version = "5.52.2"
   create  = var.create_iam_github_oidc_provider
 }
 
@@ -38,7 +38,7 @@ data "aws_caller_identity" "current" {}
 
 module "aws_support_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-roles"
-  version = "5.47.1"
+  version = "5.52.2"
   trusted_role_arns = [
     "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
   ]
