@@ -65,20 +65,20 @@ module "athena_account_baseline_primary" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~>1.3 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.27.0, < 6.0.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.0.0, < 7.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.27.0, < 6.0.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.18.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_athena_query_results_bucket"></a> [athena\_query\_results\_bucket](#module\_athena\_query\_results\_bucket) | fivexl/account-baseline/aws//modules/s3_baseline | 1.2.2 |
-| <a name="module_naming_conventions"></a> [naming\_conventions](#module\_naming\_conventions) | ../naming_conventions | n/a |
+| <a name="module_athena_query_results_bucket"></a> [athena\_query\_results\_bucket](#module\_athena\_query\_results\_bucket) | ../s3_baseline | n/a |
+| <a name="module_naming_conventions"></a> [naming\_conventions](#module\_naming\_conventions) | fivexl/naming-conventions/aws | 0.1.1 |
 | <a name="module_s3_access_logs_glue_table"></a> [s3\_access\_logs\_glue\_table](#module\_s3\_access\_logs\_glue\_table) | fivexl/s3-access-logs-athena-table/aws | 1.0.2 |
 
 ## Resources
@@ -93,14 +93,17 @@ module "athena_account_baseline_primary" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_athena_query_results_bucket_name"></a> [athena\_query\_results\_bucket\_name](#input\_athena\_query\_results\_bucket\_name) | The name of the S3 bucket for storing athena query results. Will be generated if not provided | `string` | `""` | no |
 | <a name="input_create_athena_workgroup"></a> [create\_athena\_workgroup](#input\_create\_athena\_workgroup) | Whether to create an Athena workgroup | `bool` | `true` | no |
 | <a name="input_query_results_bucket_lifecycle_rule"></a> [query\_results\_bucket\_lifecycle\_rule](#input\_query\_results\_bucket\_lifecycle\_rule) | The lifecycle rule for the query results bucket | `any` | `{}` | no |
 | <a name="input_s3_access_logs_bucket_name"></a> [s3\_access\_logs\_bucket\_name](#input\_s3\_access\_logs\_bucket\_name) | The name of the S3 bucket for storing access logs | `string` | n/a | yes |
-| <a name="input_s3_access_logs_glue_database"></a> [s3\_access\_logs\_glue\_database](#input\_s3\_access\_logs\_glue\_database) | Configuration for the Glue database for the S3 access logs | <pre>object({<br>    create = optional(bool, true)<br>    name   = optional(string, "s3_access_logs")<br>  })</pre> | <pre>{<br>  "create": true,<br>  "name": "s3_access_logs"<br>}</pre> | no |
-| <a name="input_s3_access_logs_glue_table"></a> [s3\_access\_logs\_glue\_table](#input\_s3\_access\_logs\_glue\_table) | Configuration for the Glue table for the S3 access logs | <pre>object({<br>    name          = optional(string)<br>    database_name = optional(string)<br>    location      = string<br>  })</pre> | n/a | yes |
+| <a name="input_s3_access_logs_glue_database"></a> [s3\_access\_logs\_glue\_database](#input\_s3\_access\_logs\_glue\_database) | Configuration for the Glue database for the S3 access logs | <pre>object({<br/>    create = optional(bool, true)<br/>    name   = optional(string, "s3_access_logs")<br/>  })</pre> | <pre>{<br/>  "create": true,<br/>  "name": "s3_access_logs"<br/>}</pre> | no |
+| <a name="input_s3_access_logs_glue_table"></a> [s3\_access\_logs\_glue\_table](#input\_s3\_access\_logs\_glue\_table) | Configuration for the Glue table for the S3 access logs | <pre>object({<br/>    name          = optional(string)<br/>    database_name = optional(string)<br/>    location      = string<br/>  })</pre> | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | (Optional) Key-value map of resource tags | `map(string)` | `{}` | no |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_athena_query_results_bucket_name"></a> [athena\_query\_results\_bucket\_name](#output\_athena\_query\_results\_bucket\_name) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
