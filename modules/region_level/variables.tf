@@ -14,7 +14,7 @@ variable "s3_access_logs_bucket_name" {
   description = <<EOT
   The name of the S3 bucket.
   If not specified, the module will generate a name automatically like:
-  "access-logs-{sha1(format("%s-%s", data.aws_caller_identity.current.account_id, data.aws_region.current.name))}"
+  "access-logs-{sha1(format("%s-%s", data.aws_caller_identity.current.account_id, data.aws_region.current.region))}"
   EOT
 }
 
@@ -144,74 +144,6 @@ EOT
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 # Terraform state resources
-variable "create_dynamodb_tf_state_lock" {
-  type        = bool
-  default     = true
-  description = <<EOT
-    If true, module will create DynamoDB table for storing Terraform state lock
-    EOT
-}
-
-variable "dynamodb_tf_state_lock_name" {
-  type        = string
-  default     = ""
-  description = <<EOT
-  The name of the DynamoDB table.
-  If not specified, the module will generate a name automatically like:
-  "terraform-state-{sha1(format("%s-%s", data.aws_caller_identity.current.account_id, data.aws_region.current.name))}"
-  EOT
-}
-
-variable "dynamodb_tf_state_lock_hash_key" {
-  type        = string
-  default     = "LockID"
-  description = "The hash key for the DynamoDB table."
-}
-
-variable "dynamodb_tf_state_lock_billing_mode" {
-  type        = string
-  default     = "PAY_PER_REQUEST"
-  description = "The billing mode for the DynamoDB table."
-}
-
-variable "dynamodb_tf_state_lock_attribute" {
-  type = list(object({
-    name = string
-    type = string
-  }))
-  default = [
-    {
-      name = "LockID",
-      type = "S"
-    }
-  ]
-  description = "The attributes for the DynamoDB table."
-}
-
-variable "dynamodb_tf_state_lock_tags" {
-  type        = map(string)
-  default     = {}
-  description = "Tags for the DynamoDB table."
-}
-
-variable "dynamodb_tf_state_lock_server_side_encryption_enabled" {
-  type        = bool
-  default     = true
-  description = "Enable server-side encryption for the DynamoDB table."
-}
-
-variable "dynamodb_tf_state_lock_server_side_encryption_kms_key_arn" {
-  description = "The ARN of the CMK that should be used for the AWS KMS encryption. This attribute should only be specified if the key is different from the default DynamoDB CMK, alias/aws/dynamodb."
-  type        = string
-  default     = null
-}
-
-variable "dynamodb_tf_state_lock_deletion_protection_enabled" {
-  description = "Whether to enable deletion protection on the DynamoDB table"
-  type        = bool
-  default     = true
-}
-
 variable "create_s3_tf_state_bucket" {
   type        = bool
   default     = true
