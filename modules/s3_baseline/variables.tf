@@ -24,12 +24,14 @@ variable "server_side_encryption_configuration" {
   type = any
   default = {
     rule = {
+      blocked_encryption_types = ["SSE-C"]
+      bucket_key_enabled       = false
       apply_server_side_encryption_by_default = {
         sse_algorithm = "AES256"
       }
     }
   }
-  description = "The server-side encryption algorithm to use for the S3 bucket."
+  description = "Server-side encryption for the bucket. Defaults match AWS/provider normalization (AES256, block SSE-C, no S3 bucket key) to avoid perpetual drift."
 }
 
 variable "control_object_ownership" {

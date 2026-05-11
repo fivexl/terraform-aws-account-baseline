@@ -28,6 +28,8 @@ variable "s3_access_logs_bucket_server_side_encryption_algorithm" {
   type = any
   default = {
     rule = {
+      blocked_encryption_types = ["SSE-C"]
+      bucket_key_enabled       = false
       apply_server_side_encryption_by_default = {
         sse_algorithm = "AES256"
       }
@@ -194,6 +196,8 @@ variable "s3_tf_state_bucket_server_side_encryption_configuration" {
   type = any
   default = {
     rule = {
+      blocked_encryption_types = ["SSE-C"]
+      bucket_key_enabled       = false
       apply_server_side_encryption_by_default = {
         sse_algorithm = "AES256"
       }
