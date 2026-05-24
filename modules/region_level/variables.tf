@@ -208,6 +208,22 @@ variable "s3_tf_state_bucket_server_side_encryption_configuration" {
 
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
+# EBS regional baseline
+
+variable "create_ebs_snapshot_block_public_access" {
+  description = "Whether to manage EBS snapshot block public access for the region."
+  type        = bool
+  default     = true
+}
+
+variable "create_ebs_encryption_by_default" {
+  description = "Whether to manage EBS encryption by default for the region."
+  type        = bool
+  default     = true
+}
+
+# ------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------------
 
 variable "tags" {
   type        = map(string)

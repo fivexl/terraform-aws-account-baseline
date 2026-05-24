@@ -21,14 +21,14 @@ The terraform-aws-account-baseline module is designed to implement best practice
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.100.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.0.0, < 7.0.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_aws_support_role"></a> [aws\_support\_role](#module\_aws\_support\_role) | terraform-aws-modules/iam/aws//modules/iam-assumable-roles | 5.47.1 |
-| <a name="module_iam_github_oidc_provider"></a> [iam\_github\_oidc\_provider](#module\_iam\_github\_oidc\_provider) | terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider | 5.47.1 |
+| <a name="module_aws_support_role"></a> [aws\_support\_role](#module\_aws\_support\_role) | terraform-aws-modules/iam/aws//modules/iam-assumable-roles | 5.52.2 |
+| <a name="module_iam_github_oidc_provider"></a> [iam\_github\_oidc\_provider](#module\_iam\_github\_oidc\_provider) | terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider | 5.52.2 |
 
 ## Resources
 

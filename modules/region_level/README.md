@@ -4,8 +4,8 @@
 The terraform-aws-regional-baseline module is a Terraform solution designed for setting up essential regional resources in AWS with a focus on security and best practices. This configuration helps in maintaining a secure and efficient AWS environment at the regional level.
 
 ## Included Resources
-- aws_ebs_encryption_by_default: Automatically enables encryption for new EBS volumes and snapshots created in the region.
-- aws_ebs_snapshot_block_public_access: Disables the ability to create public snapshots in the region.
+- aws_ebs_encryption_by_default: Automatically enables encryption for new EBS volumes and snapshots created in the region (set `create_ebs_encryption_by_default = false` to skip management in this module).
+- aws_ebs_snapshot_block_public_access: Disables the ability to create public snapshots in the region (set `create_ebs_snapshot_block_public_access = false` to skip management in this module).
 - terraform_state_bucket: Creates an S3 bucket designed to store Terraform state files securely.
 - aws_dynamodb_table: Sets up a DynamoDB table, used for locking Terraform state files to prevent conflicts.
 - access_logs_bucket: Establishes an S3 bucket for storing access logs, assisting in monitoring and auditing activities.
@@ -23,7 +23,7 @@ The terraform-aws-regional-baseline module is a Terraform solution designed for 
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.18.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.0.0, < 7.0.0 |
 
 ## Modules
 
@@ -47,6 +47,8 @@ The terraform-aws-regional-baseline module is a Terraform solution designed for 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_cmk_access_logs_bucket_config"></a> [cmk\_access\_logs\_bucket\_config](#input\_cmk\_access\_logs\_bucket\_config) | Configuration for the CMK (Customer Master Key) access logs bucket.<br/>- bucket\_name: The name of the S3 bucket. If not specified, the module will generate a name automatically.<br/>- logging: If not specified and access logs bucket is created, the module will create a logging configuration that targets the access logs bucket.<br/>- server\_side\_encryption\_configuration: It is not set to default, so you will be able to create the bucket and specify the encryption algorithm and the KMS key later. | <pre>object({<br/>    create_bucket                            = optional(bool, false)<br/>    bucket_name                              = optional(string, "")<br/>    versioning                               = optional(any, { enabled = true })<br/>    server_side_encryption_configuration     = optional(any, {})<br/>    logging                                  = optional(any, {})<br/>    lifecycle_rule                           = optional(any, [])<br/>    replication_configuration                = optional(any, {})<br/>    object_ownership                         = optional(string, "BucketOwnerEnforced")<br/>    control_object_ownership                 = optional(bool, true)<br/>    allowed_kms_key_arn                      = optional(string, null)<br/>    policy                                   = optional(any, null)<br/>    attach_log_delivery_policies             = optional(bool, true)<br/>    attach_deny_incorrect_kms_key_sse        = optional(bool, false)<br/>    attach_deny_insecure_transport_policy    = optional(bool, true)<br/>    attach_deny_unencrypted_object_uploads   = optional(bool, true)<br/>    attach_deny_incorrect_encryption_headers = optional(bool, true)<br/>    tags                                     = optional(map(string), {})<br/>  })</pre> | `{}` | no |
+| <a name="input_create_ebs_encryption_by_default"></a> [create\_ebs\_encryption\_by\_default](#input\_create\_ebs\_encryption\_by\_default) | Whether to manage EBS encryption by default for the region. | `bool` | `true` | no |
+| <a name="input_create_ebs_snapshot_block_public_access"></a> [create\_ebs\_snapshot\_block\_public\_access](#input\_create\_ebs\_snapshot\_block\_public\_access) | Whether to manage EBS snapshot block public access for the region. | `bool` | `true` | no |
 | <a name="input_create_s3_access_logs_bucket"></a> [create\_s3\_access\_logs\_bucket](#input\_create\_s3\_access\_logs\_bucket) | If true, module will create S3 bucket for storing access logs | `bool` | `true` | no |
 | <a name="input_create_s3_tf_state_bucket"></a> [create\_s3\_tf\_state\_bucket](#input\_create\_s3\_tf\_state\_bucket) | If true, module will create S3 bucket for storing Terraform state | `bool` | `true` | no |
 | <a name="input_s3_access_logs_bucket_allowed_kms_key_arn"></a> [s3\_access\_logs\_bucket\_allowed\_kms\_key\_arn](#input\_s3\_access\_logs\_bucket\_allowed\_kms\_key\_arn) | The ARN of KMS key which should be allowed in PutObject | `string` | `null` | no |
