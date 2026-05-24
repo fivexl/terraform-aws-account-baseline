@@ -101,13 +101,13 @@ variable "attach_deny_insecure_transport_policy" {
 }
 
 variable "attach_deny_incorrect_encryption_headers" {
-  description = "Controls if S3 bucket policy should deny requests with incorrect encryption headers."
+  description = "Deprecated: this input is currently ignored and will be removed in the next major release. Custom SSE deny statements with a VPC Flow Logs exception are always managed by this module."
   type        = bool
   default     = true
 }
 
 variable "attach_deny_unencrypted_object_uploads" {
-  description = "Controls if S3 bucket policy should deny unencrypted object uploads."
+  description = "Deprecated: this input is currently ignored and will be removed in the next major release. Custom SSE deny statements with a VPC Flow Logs exception are always managed by this module."
   type        = bool
   default     = true
 }

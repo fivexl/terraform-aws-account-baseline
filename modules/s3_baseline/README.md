@@ -36,7 +36,7 @@ module "terraform_state_bucket" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_bucket_baseline"></a> [bucket\_baseline](#module\_bucket\_baseline) | terraform-aws-modules/s3-bucket/aws | 5.10.0 |
+| <a name="module_bucket_baseline"></a> [bucket\_baseline](#module\_bucket\_baseline) | terraform-aws-modules/s3-bucket/aws | 5.13.0 |
 
 ## Resources
 
@@ -49,10 +49,10 @@ module "terraform_state_bucket" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_allowed_kms_key_arn"></a> [allowed\_kms\_key\_arn](#input\_allowed\_kms\_key\_arn) | The ARN of KMS key which should be allowed in PutObject | `string` | `null` | no |
-| <a name="input_attach_deny_incorrect_encryption_headers"></a> [attach\_deny\_incorrect\_encryption\_headers](#input\_attach\_deny\_incorrect\_encryption\_headers) | Controls if S3 bucket policy should deny requests with incorrect encryption headers. | `bool` | `true` | no |
+| <a name="input_attach_deny_incorrect_encryption_headers"></a> [attach\_deny\_incorrect\_encryption\_headers](#input\_attach\_deny\_incorrect\_encryption\_headers) | Deprecated: this input is currently ignored and will be removed in the next major release. Custom SSE deny statements with a VPC Flow Logs exception are always managed by this module. | `bool` | `true` | no |
 | <a name="input_attach_deny_incorrect_kms_key_sse"></a> [attach\_deny\_incorrect\_kms\_key\_sse](#input\_attach\_deny\_incorrect\_kms\_key\_sse) | Controls if S3 bucket policy should deny usage of incorrect KMS key SSE. | `bool` | `false` | no |
 | <a name="input_attach_deny_insecure_transport_policy"></a> [attach\_deny\_insecure\_transport\_policy](#input\_attach\_deny\_insecure\_transport\_policy) | Controls if S3 bucket policy should deny insecure transport (HTTP) requests. | `bool` | `true` | no |
-| <a name="input_attach_deny_unencrypted_object_uploads"></a> [attach\_deny\_unencrypted\_object\_uploads](#input\_attach\_deny\_unencrypted\_object\_uploads) | Controls if S3 bucket policy should deny unencrypted object uploads. | `bool` | `true` | no |
+| <a name="input_attach_deny_unencrypted_object_uploads"></a> [attach\_deny\_unencrypted\_object\_uploads](#input\_attach\_deny\_unencrypted\_object\_uploads) | Deprecated: this input is currently ignored and will be removed in the next major release. Custom SSE deny statements with a VPC Flow Logs exception are always managed by this module. | `bool` | `true` | no |
 | <a name="input_attach_log_delivery_policies"></a> [attach\_log\_delivery\_policies](#input\_attach\_log\_delivery\_policies) | Attach S3/VPC/NLB/ALB/ELB access log delivery policy to the bucket. | `bool` | `false` | no |
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | The name of the bucket. | `string` | n/a | yes |
 | <a name="input_control_object_ownership"></a> [control\_object\_ownership](#input\_control\_object\_ownership) | Control object ownership for the bucket. | `bool` | `true` | no |
