@@ -46,3 +46,8 @@ module "aws_support_role" {
   poweruser_role_policy_arns = ["arn:aws:iam::aws:policy/AWSSupportAccess"]
   create_poweruser_role      = true
 }
+
+resource "aws_ssm_service_setting" "block_public_sharing" {
+  setting_id    = "/ssm/documents/console/public-sharing-permission"
+  setting_value = "Disable"
+}
