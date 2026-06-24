@@ -52,3 +52,8 @@ module "cmk_access_logs_bucket" {
 
   tags = merge(var.cmk_access_logs_bucket_config.tags, var.tags)
 }
+
+resource "aws_ssm_service_setting" "block_public_sharing" {
+  setting_id    = "/ssm/documents/console/public-sharing-permission"
+  setting_value = "Disable"
+}
