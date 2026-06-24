@@ -54,6 +54,7 @@ module "cmk_access_logs_bucket" {
 }
 
 resource "aws_ssm_service_setting" "block_public_sharing" {
+  count         = var.create_ssm_block_public_sharing ? 1 : 0
   setting_id    = "/ssm/documents/console/public-sharing-permission"
   setting_value = "Disable"
 }
