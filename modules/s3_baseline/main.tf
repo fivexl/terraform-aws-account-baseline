@@ -74,7 +74,7 @@ data "aws_iam_policy_document" "bucket_policy" {
     }
     condition {
       test     = "StringNotEquals"
-      variable = "aws:PrincipalService"
+      variable = "aws:PrincipalServiceName"
       values   = ["delivery.logs.amazonaws.com"]
     }
   }
@@ -97,7 +97,7 @@ data "aws_iam_policy_document" "bucket_policy" {
     }
     condition {
       test     = "StringNotEquals"
-      variable = "aws:PrincipalService"
+      variable = "aws:PrincipalServiceName"
       values   = ["delivery.logs.amazonaws.com"]
     }
   }
