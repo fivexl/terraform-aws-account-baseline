@@ -17,3 +17,8 @@ output "access_logs_bucket_arn" {
   description = "The ARN of the S3 bucket used for storing Terraform state"
   value       = try(module.logs_bucket.s3_bucket_arn, "")
 }
+
+output "config_recorder_id" {
+  description = "The ID of the AWS Config configuration recorder"
+  value       = try(aws_config_configuration_recorder.this[0].id, "")
+}

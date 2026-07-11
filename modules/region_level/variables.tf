@@ -224,6 +224,56 @@ variable "create_ebs_encryption_by_default" {
 
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
+# AWS Config - Recording Mode
+# AWS Config is already enabled by Control Tower. These variables allow managing the
+# recording frequency (switching from CONTINUOUS to DAILY).
+
+variable "manage_aws_config_recording_mode" {
+  description = "Whether to manage the AWS Config recorder's recording mode. Set to true to switch to daily recording."
+  type        = bool
+  default     = false
+}
+
+variable "aws_config_recorder_name" {
+  description = "The name of the existing AWS Config configuration recorder."
+  type        = string
+  default     = "default"
+}
+
+variable "aws_config_recorder_role_arn" {
+  description = "The ARN of the existing IAM role used by the AWS Config recorder. If empty, the module will look it up using `aws_config_recorder_role_name`."
+  type        = string
+  default     = ""
+}
+
+variable "aws_config_recorder_role_name" {
+  description = "The name of the existing IAM role used by the AWS Config recorder. Used for automatic lookup when `aws_config_recorder_role_arn` is not provided. Defaults to the Control Tower role name."
+  type        = string
+  default     = "aws-controltower-ConfigRecorderRole"
+}
+
+variable "aws_config_recording_frequency" {
+  description = "Recording frequency for the configuration recorder. Valid values: CONTINUOUS, DAILY."
+  type        = string
+  default     = "DAILY"
+
+  validation {
+    condition     = contains(["CONTINUOUS", "DAILY"], var.aws_config_recording_frequency)
+    error_message = "Recording frequency must be either CONTINUOUS or DAILY."
+  }
+}
+
+variable "aws_config_recording_group" {
+  description = "Recording group configuration for AWS Config."
+  type = object({
+    all_supported                 = optional(bool, true)
+    include_global_resource_types = optional(bool, false)
+  })
+  default = {}
+}
+
+# ------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------------
 
 variable "tags" {
   type        = map(string)
