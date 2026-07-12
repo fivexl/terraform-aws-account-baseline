@@ -46,3 +46,4 @@ module "aws_support_role" {
   poweruser_role_policy_arns = ["arn:aws:iam::aws:policy/AWSSupportAccess"]
   create_poweruser_role      = true
 }
+
