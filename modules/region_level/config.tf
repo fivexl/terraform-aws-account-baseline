@@ -2,11 +2,13 @@
 # AWS Config - Recording Mode Configuration
 # ------------------------------------------------------------------------------------------------------------------
 # AWS Config is typically already enabled by Control Tower / AWS Organizations with CONTINUOUS
-# recording. This resource imports and manages the existing configuration recorder to switch
+# recording. This resource manages the existing configuration recorder to switch
 # it to DAILY recording, which reduces costs while still maintaining compliance visibility.
 #
 # Prerequisites:
 # - AWS Config must already be enabled (e.g., by Control Tower)
+# - The existing recorder must be imported into state from the root module:
+#   terraform import 'module.<name>.aws_config_configuration_recorder.this[0]' default
 # ------------------------------------------------------------------------------------------------------------------
 
 data "aws_iam_role" "config_recorder" {
@@ -17,12 +19,6 @@ data "aws_iam_role" "config_recorder" {
 
 locals {
   aws_config_role_arn = var.aws_config_recorder_role_arn != "" ? var.aws_config_recorder_role_arn : try(data.aws_iam_role.config_recorder[0].arn, "")
-}
-
-import {
-  for_each = var.manage_aws_config_recording_mode ? toset([var.aws_config_recorder_name]) : toset([])
-  to       = aws_config_configuration_recorder.this[0]
-  id       = each.value
 }
 
 resource "aws_config_configuration_recorder" "this" {
