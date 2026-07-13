@@ -11,14 +11,8 @@
 #   terraform import 'module.<name>.aws_config_configuration_recorder.this[0]' default
 # ------------------------------------------------------------------------------------------------------------------
 
-data "aws_iam_role" "config_recorder" {
-  count = var.manage_aws_config_recording_mode && var.aws_config_recorder_role_arn == "" ? 1 : 0
-
-  name = var.aws_config_recorder_role_name
-}
-
 locals {
-  aws_config_role_arn = var.aws_config_recorder_role_arn != "" ? var.aws_config_recorder_role_arn : try(data.aws_iam_role.config_recorder[0].arn, "")
+  aws_config_role_arn = var.aws_config_recorder_role_arn != "" ? var.aws_config_recorder_role_arn : "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/aws-service-role/config.amazonaws.com/AWSServiceRoleForConfig"
 }
 
 resource "aws_config_configuration_recorder" "this" {
