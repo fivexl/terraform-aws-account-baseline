@@ -7,7 +7,9 @@ AWS Control Tower enables AWS Config with **CONTINUOUS** recording by default on
 This module allows you to switch the recording mode to **DAILY**, where Config captures a snapshot of your resource configurations once every 24 hours instead of on every change. This reduces AWS Config costs while still maintaining compliance visibility for most use cases.
 
 ## Usage
-in the aft-account-customizations repo , in the modules/region/baseline.tf path add the following variable 
+
+In the aft-account-customizations repo, in the modules/region/baseline.tf path add the following variable:
+
 ```hcl
 module "baseline" {
   source = "fivexl/account-baseline/aws//modules/region_level"
@@ -16,12 +18,26 @@ module "baseline" {
 }
 ```
 
-That's it. The module will:
+And add an import block in the root module for each region:
 
-1. Look up the existing IAM role (`aws-controltower-ConfigRecorderRole`) created by Control Tower
+```hcl
+import {
+  to = module.region_level_baseline_primary.module.baseline.aws_config_configuration_recorder.this[0]
+  id = "default"
+}
+
+import {
+  to = module.region_level_baseline_secondary.module.baseline.aws_config_configuration_recorder.this[0]
+  id = "default"
+}
+```
+
+The import block is safe to leave permanently — if the resource is already in state, Terraform skips it.
+
+The module will:
+
+1. Use the AWS Config service-linked role (`AWSServiceRoleForConfig`) automatically
 2. Update the recording mode from `CONTINUOUS` to `DAILY`
-
-**Note:** You must import the existing recorder into state on first use. See the "Importing the Existing Recorder" section below.
 
 ## Variables
 
@@ -30,35 +46,14 @@ That's it. The module will:
 | `manage_aws_config_recording_mode` | `false` | Set to `true` to manage the recording mode |
 | `aws_config_recording_frequency` | `"DAILY"` | Recording frequency: `CONTINUOUS` or `DAILY` |
 | `aws_config_recorder_name` | `"default"` | Name of the existing recorder |
-| `aws_config_recorder_role_arn` | `""` | Override the role ARN (auto-detected if empty) |
-| `aws_config_recorder_role_name` | `"aws-controltower-ConfigRecorderRole"` | Role name for auto-detection |
+| `aws_config_recorder_role_arn` | `""` | Override the role ARN. If empty, defaults to the service-linked role |
 | `aws_config_recording_group` | `{ all_supported = true, include_global_resource_types = false }` | Recording group settings |
 
 ## How It Works
 
-- **Role detection**: Looks up the Control Tower-created IAM role by name via a `data "aws_iam_role"` data source. You can skip this by providing `aws_config_recorder_role_arn` directly.
+- **Role ARN**: Constructs the service-linked role ARN automatically from the account ID: `arn:aws:iam::<account_id>:role/aws-service-role/config.amazonaws.com/AWSServiceRoleForConfig`. You can override this with `aws_config_recorder_role_arn` if your setup uses a different role.
 - **Idempotent**: If you deploy this to an account where Config is already set to DAILY, Terraform will show no changes.
-
-## Importing the Existing Recorder
-
-Since AWS Config is already running in your accounts, you need to import the existing recorder into Terraform state. Do this from the **root module** (your AFT customizations), not inside this module.
-
-**Option A** - Import block in your root module (Terraform >= 1.5):
-
-```hcl
-import {
-  to = module.baseline.aws_config_configuration_recorder.this[0]
-  id = "default"
-}
-```
-
-**Option B** - CLI import:
-
-```bash
-terraform import 'module.baseline.aws_config_configuration_recorder.this[0]' default
-```
-
-After the first successful apply, you can remove the import block — the resource will already be in state.
+- **Import**: The existing recorder must be imported into state from the root module (see Usage above). The import block is a no-op on subsequent runs.
 
 ## Important Notes
 
