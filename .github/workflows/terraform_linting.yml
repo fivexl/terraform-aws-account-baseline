@@ -12,3 +12,16 @@ jobs:
         with:
             terraform-version: "1.7.0"
             aws-default-region: "eu-central-1"
+            tfsec-continue-on-error: true
+
+    trivy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Run Trivy IaC scanner
+              uses: aquasecurity/trivy-action@master
+              with:
+                scan-type: 'config'
+                scan-ref: '.'
+                exit-code: '1'
+                severity: 'HIGH,CRITICAL'
