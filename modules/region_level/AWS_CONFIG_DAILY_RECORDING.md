@@ -18,9 +18,10 @@ module "baseline" {
 
 That's it. The module will:
 
-1. Automatically import the existing Config recorder (named `default`) into Terraform state
-2. Look up the existing IAM role (`aws-controltower-ConfigRecorderRole`) created by Control Tower
-3. Update the recording mode from `CONTINUOUS` to `DAILY`
+1. Look up the existing IAM role (`aws-controltower-ConfigRecorderRole`) created by Control Tower
+2. Update the recording mode from `CONTINUOUS` to `DAILY`
+
+**Note:** You must import the existing recorder into state on first use. See the "Importing the Existing Recorder" section below.
 
 ## Variables
 
@@ -35,9 +36,29 @@ That's it. The module will:
 
 ## How It Works
 
-- **Import block**: Uses Terraform's native `import` block (requires Terraform >= 1.5) to adopt the existing Config recorder into state on first apply. No manual `terraform import` command needed.
 - **Role detection**: Looks up the Control Tower-created IAM role by name via a `data "aws_iam_role"` data source. You can skip this by providing `aws_config_recorder_role_arn` directly.
 - **Idempotent**: If you deploy this to an account where Config is already set to DAILY, Terraform will show no changes.
+
+## Importing the Existing Recorder
+
+Since AWS Config is already running in your accounts, you need to import the existing recorder into Terraform state. Do this from the **root module** (your AFT customizations), not inside this module.
+
+**Option A** - Import block in your root module (Terraform >= 1.5):
+
+```hcl
+import {
+  to = module.baseline.aws_config_configuration_recorder.this[0]
+  id = "default"
+}
+```
+
+**Option B** - CLI import:
+
+```bash
+terraform import 'module.baseline.aws_config_configuration_recorder.this[0]' default
+```
+
+After the first successful apply, you can remove the import block — the resource will already be in state.
 
 ## Important Notes
 
