@@ -208,6 +208,16 @@ variable "s3_tf_state_bucket_server_side_encryption_configuration" {
 
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
+# SSM regional baseline
+
+variable "create_ssm_block_public_sharing" {
+  description = "Whether to block public sharing of SSM documents in the region."
+  type        = bool
+  default     = true
+}
+
+# ------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------------
 # EBS regional baseline
 
 variable "create_ebs_snapshot_block_public_access" {
