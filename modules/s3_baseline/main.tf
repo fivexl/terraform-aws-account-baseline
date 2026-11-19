@@ -40,7 +40,7 @@ module "bucket_baseline" {
   attach_deny_insecure_transport_policy = var.attach_deny_insecure_transport_policy
 
   # Disable the module’s stock “deny if missing/incorrect SSE header” rules
-  # because we’re enforcing stricter versions with a Flow-Logs exception.
+  # because we enforce the same checks with exceptions for AWS log delivery.
   attach_deny_incorrect_encryption_headers = false
   attach_deny_unencrypted_object_uploads   = false
 
@@ -52,7 +52,8 @@ module "bucket_baseline" {
   tags = var.tags
 }
 
-# VPC Flow Logs are unable to use the default policy to put logs into S3, so we need to create a custom one.
+# VPC Flow Logs, ELB access logs, and S3 server access logs do not send
+# SSE headers. Exempt those service principals; still deny everyone else.
 data "aws_iam_policy_document" "bucket_policy" {
   source_policy_documents = var.policy != null ? [var.policy] : []
   statement {
@@ -75,7 +76,11 @@ data "aws_iam_policy_document" "bucket_policy" {
     condition {
       test     = "StringNotEquals"
       variable = "aws:PrincipalServiceName"
-      values   = ["delivery.logs.amazonaws.com"]
+      values = [
+        "logdelivery.elasticloadbalancing.amazonaws.com",
+        "delivery.logs.amazonaws.com",
+        "logging.s3.amazonaws.com",
+      ]
     }
   }
   statement {
@@ -98,7 +103,11 @@ data "aws_iam_policy_document" "bucket_policy" {
     condition {
       test     = "StringNotEquals"
       variable = "aws:PrincipalServiceName"
-      values   = ["delivery.logs.amazonaws.com"]
+      values = [
+        "logdelivery.elasticloadbalancing.amazonaws.com",
+        "delivery.logs.amazonaws.com",
+        "logging.s3.amazonaws.com",
+      ]
     }
   }
 }
