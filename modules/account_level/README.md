@@ -14,21 +14,21 @@ The terraform-aws-account-baseline module is designed to implement best practice
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~>1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.0.0, < 7.0.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.14.8 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.28.0, < 7.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.0.0, < 7.0.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.28.0, < 7.0.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_aws_support_role"></a> [aws\_support\_role](#module\_aws\_support\_role) | terraform-aws-modules/iam/aws//modules/iam-assumable-roles | 5.52.2 |
-| <a name="module_iam_github_oidc_provider"></a> [iam\_github\_oidc\_provider](#module\_iam\_github\_oidc\_provider) | terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider | 5.52.2 |
+| <a name="module_aws_support_role"></a> [aws\_support\_role](#module\_aws\_support\_role) | terraform-aws-modules/iam/aws//modules/iam-role | 6.8.2 |
+| <a name="module_iam_github_oidc_provider"></a> [iam\_github\_oidc\_provider](#module\_iam\_github\_oidc\_provider) | terraform-aws-modules/iam/aws//modules/iam-oidc-provider | 6.8.2 |
 
 ## Resources
 
@@ -39,6 +39,7 @@ The terraform-aws-account-baseline module is designed to implement best practice
 | [aws_iam_security_token_service_preferences.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_security_token_service_preferences) | resource |
 | [aws_s3_account_public_access_block.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_account_public_access_block) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [aws_iam_policy_document.aws_support_assume](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
 

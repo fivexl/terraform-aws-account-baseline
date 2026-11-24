@@ -24,9 +24,11 @@ resource "aws_s3_account_public_access_block" "this" {
 }
 
 module "iam_github_oidc_provider" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider"
+  source  = "terraform-aws-modules/iam/aws//modules/iam-oidc-provider"
   version = "6.8.2"
-  create  = var.create_iam_github_oidc_provider
+
+  create = var.create_iam_github_oidc_provider
+  url    = "https://token.actions.githubusercontent.com"
 }
 
 resource "aws_iam_security_token_service_preferences" "this" {
@@ -36,14 +38,50 @@ resource "aws_iam_security_token_service_preferences" "this" {
 
 data "aws_caller_identity" "current" {}
 
+# Same trust policy iam-assumable-roles emitted: account root, MFA required,
+# sts:AssumeRole and sts:TagSession. Passed as a document so iam-role does not add a Sid.
+data "aws_iam_policy_document" "aws_support_assume" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "sts:AssumeRole",
+      "sts:TagSession",
+    ]
+
+    principals {
+      type = "AWS"
+      identifiers = [
+        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
+      ]
+    }
+
+    condition {
+      test     = "Bool"
+      variable = "aws:MultiFactorAuthPresent"
+      values   = ["true"]
+    }
+
+    condition {
+      test     = "NumericLessThan"
+      variable = "aws:MultiFactorAuthAge"
+      values   = ["86400"]
+    }
+  }
+}
+
 module "aws_support_role" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-roles"
+  source  = "terraform-aws-modules/iam/aws//modules/iam-role"
   version = "6.8.2"
-  trusted_role_arns = [
-    "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
-  ]
-  poweruser_role_name        = "AWSSupportRole"
-  poweruser_role_policy_arns = ["arn:aws:iam::aws:policy/AWSSupportAccess"]
-  create_poweruser_role      = true
+
+  name                 = "AWSSupportRole"
+  use_name_prefix      = false
+  path                 = "/"
+  max_session_duration = 3600
+
+  policies = {
+    AWSSupportAccess = "arn:aws:iam::aws:policy/AWSSupportAccess"
+  }
+
+  override_trust_policy_documents = [data.aws_iam_policy_document.aws_support_assume.json]
 }
 
