@@ -64,7 +64,7 @@ module "athena_account_baseline_primary" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~>1.3 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.14.8 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.0.0, < 7.0.0 |
 
 ## Providers
