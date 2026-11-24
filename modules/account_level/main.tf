@@ -25,7 +25,7 @@ resource "aws_s3_account_public_access_block" "this" {
 
 module "iam_github_oidc_provider" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-oidc-provider"
-  version = "6.8.2"
+  version = "6.11.1"
 
   create = var.create_iam_github_oidc_provider
   url    = "https://token.actions.githubusercontent.com"
@@ -71,7 +71,7 @@ data "aws_iam_policy_document" "aws_support_assume" {
 
 module "aws_support_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role"
-  version = "6.8.2"
+  version = "6.11.1"
 
   name                 = "AWSSupportRole"
   use_name_prefix      = false
